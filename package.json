@@ -12,5 +12,8 @@
   },
   "allowScripts": {
     "electron@31.7.7": true
+  },
+  "dependencies": {
+    "@google/model-viewer": "^4.3.1"
   }
 }
