@@ -52,7 +52,7 @@ function createWindow() {
   win.loadFile(path.join(__dirname, 'antigravity.html'));
 
   // ── Show only when fully ready ─────────────────────────────────────────────
-  win.show();
+  win.show(); win.focus();
   if (IS_DEV) win.webContents.openDevTools({ mode: 'detach' });
 
   // ── Keyboard shortcuts ─────────────────────────────────────────────────────
