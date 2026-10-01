@@ -1,0 +1,14 @@
+{
+  "name": "concept-identite-numerique",
+  "version": "1.0.0",
+  "description": "Presentation immersive et interactive sur l'Identite Numerique avec moteur antigravite et 3D.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "three": "^0.160.0"
+  }
+}
