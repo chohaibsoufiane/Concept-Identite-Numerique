@@ -15,7 +15,7 @@ const { app, BrowserWindow, Menu, globalShortcut } = require('electron');
 const path = require('node:path');
 
 // ── Flags ────────────────────────────────────────────────────────────────────
-const IS_DEV = process.argv.includes('--dev');
+const IS_DEV = true;
 
 // ── Window factory ───────────────────────────────────────────────────────────
 function createWindow() {
@@ -53,7 +53,7 @@ function createWindow() {
   win.loadFile(path.join(__dirname, 'antigravity.html'));
 
   // ── Show only when fully ready ─────────────────────────────────────────────
-  win.show(); win.focus();
+  win.show(); win.focus(); win.restore(); win.moveTop();
   if (IS_DEV) win.webContents.openDevTools({ mode: 'detach' });
 
   // ── Keyboard shortcuts ─────────────────────────────────────────────────────
