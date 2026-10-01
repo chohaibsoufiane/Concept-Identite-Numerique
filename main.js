@@ -28,6 +28,7 @@ function createWindow() {
 
     // Match the app's background so there is no white flash on launch
     backgroundColor: '#0b0b10',
+    alwaysOnTop: true,
 
     title: 'Antigravity',
 
