@@ -45,17 +45,15 @@ function createWindow() {
     },
 
     // Defer show until the renderer has painted to eliminate the blank-window flash
-    show: false,
+    show: true,
   });
 
   // ── Load the renderer ──────────────────────────────────────────────────────
   win.loadFile(path.join(__dirname, 'antigravity.html'));
 
   // ── Show only when fully ready ─────────────────────────────────────────────
-  win.once('ready-to-show', () => {
-    win.show();
-    if (IS_DEV) win.webContents.openDevTools({ mode: 'detach' });
-  });
+  win.show();
+  if (IS_DEV) win.webContents.openDevTools({ mode: 'detach' });
 
   // ── Keyboard shortcuts ─────────────────────────────────────────────────────
   // Toggle DevTools — useful when debugging injected node scripts
@@ -74,6 +72,7 @@ function createWindow() {
 }
 
 // ── App lifecycle ────────────────────────────────────────────────────────────
+app.commandLine.appendSwitch('disable-gpu-shader-disk-cache');
 app.whenReady().then(() => {
   // Remove the native menu bar entirely in production (clean presentation feel)
   if (!IS_DEV) {

@@ -165,11 +165,12 @@
   <!-- Isolated State Machine Logic -->
   <script>
     try {
-      const node = this; // The element context provided by Antigravity ErrorBoundary
-      
-      const viewer = node.querySelector('#iceberg-model');
-      const btnNext = node.querySelector('#ice-btn-next');
-      const layers = node.querySelectorAll('.ice-state-layer');
+      if (this instanceof HTMLElement) {
+        const node = this; // The element context provided by Antigravity ErrorBoundary
+        
+        const viewer = node.querySelector('#iceberg-model');
+        const btnNext = node.querySelector('#ice-btn-next');
+        const layers = node.querySelectorAll('.ice-state-layer');
       
       let currentState = 0;
       
@@ -226,6 +227,7 @@
           }
         }
       });
+      } // End if
       
     } catch(err) {
       if (window.Engine && window.Engine.CrashHandler) {

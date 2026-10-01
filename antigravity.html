@@ -824,11 +824,15 @@
     <!-- Isolated State Machine Logic -->
     <script>
       try {
-        const node = this; // The element context provided by Antigravity ErrorBoundary
-        
-        const viewer = node.querySelector('#iceberg-model');
-        const btnNext = node.querySelector('#ice-btn-next');
-        const layers = node.querySelectorAll('.ice-state-layer');
+        // The script is parsed natively by the browser first (where `this` = window),
+        // and then run inside the ErrorBoundary (where `this` = the node).
+        // We only want the ErrorBoundary execution.
+        if (this instanceof HTMLElement) {
+          const node = this; // The element context provided by Antigravity ErrorBoundary
+          
+          const viewer = node.querySelector('#iceberg-model');
+          const btnNext = node.querySelector('#ice-btn-next');
+          const layers = node.querySelectorAll('.ice-state-layer');
         
         let currentState = 0;
         
@@ -885,6 +889,7 @@
             }
           }
         });
+        } // End if (this instanceof HTMLElement)
         
       } catch(err) {
         if (window.Engine && window.Engine.CrashHandler) {
