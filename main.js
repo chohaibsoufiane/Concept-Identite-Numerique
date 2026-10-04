@@ -3,12 +3,13 @@ const path = require('path');
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1400,
+    width: 1440,
     height: 900,
-    minWidth: 900,
-    minHeight: 600,
+    minWidth: 960,
+    minHeight: 640,
     frame: false,
-    backgroundColor: '#0a0a0f',
+    backgroundColor: '#090a10',
+    title: 'Concept : Identité Numérique',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
