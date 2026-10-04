@@ -1,176 +1,418 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Concept : Identité Numérique</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concept : L'Identité Numérique</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Header with Frameless Window Controls -->
-  <header class="app-header">
-    <div class="brand-area">
-      <div class="brand-dot"></div>
-      <div class="brand-title">Identité Numérique</div>
-      <span class="header-status">// Simulation & Présentation 3D</span>
-    </div>
-    <div class="electron-window-controls">
-      <button id="electron-min" class="electron-btn" aria-label="Minimize">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </button>
-      <button id="electron-max" class="electron-btn" aria-label="Maximize">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="14" height="14" rx="2" ry="2"/></svg>
-      </button>
-      <button id="electron-close" class="electron-btn close-btn" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-  </header>
-
-  <!-- Physics Engine Viewport -->
-  <main id="viewport">
-    <div class="universe-grid"></div>
-
-    <!-- Node 1 -->
-    <div class="ag-node" id="node-1" data-index="0">
-      <div class="node-top">
-        <span class="node-badge">01</span>
-        <div class="node-icon-dot"></div>
-      </div>
-      <div>
-        <div class="node-title">L'Iceberg</div>
-        <div class="node-sub">Introduction & Profondeurs</div>
-      </div>
-      <div class="node-bottom">
-        <span>3D &bull; 4 Niveaux</span>
-        <span class="node-enter-hint">Ouvrir &rarr;</span>
-      </div>
-    </div>
-
-    <!-- Node 2 -->
-    <div class="ag-node" id="node-2" data-index="1">
-      <div class="node-top">
-        <span class="node-badge">02</span>
-        <div class="node-icon-dot"></div>
-      </div>
-      <div>
-        <div class="node-title">Génération des Traces</div>
-        <div class="node-sub">Actives vs Passives</div>
-      </div>
-      <div class="node-bottom">
-        <span>Avatar & Particules</span>
-        <span class="node-enter-hint">Ouvrir &rarr;</span>
-      </div>
-    </div>
-
-    <!-- Node 3 -->
-    <div class="ag-node" id="node-3" data-index="2">
-      <div class="node-top">
-        <span class="node-badge">03</span>
-        <div class="node-icon-dot"></div>
-      </div>
-      <div>
-        <div class="node-title">Miroir E-Réputation</div>
-        <div class="node-sub">Face A vs Face B</div>
-      </div>
-      <div class="node-bottom">
-        <span>Scan Laser & Score</span>
-        <span class="node-enter-hint">Ouvrir &rarr;</span>
-      </div>
-    </div>
-
-    <!-- Node 4 -->
-    <div class="ag-node" id="node-4" data-index="3">
-      <div class="node-top">
-        <span class="node-badge">04</span>
-        <div class="node-icon-dot"></div>
-      </div>
-      <div>
-        <div class="node-title">La Faille</div>
-        <div class="node-sub">Menaces & Fuite de données</div>
-      </div>
-      <div class="node-bottom">
-        <span>Cadenas 3D & Phishing</span>
-        <span class="node-enter-hint">Ouvrir &rarr;</span>
-      </div>
-    </div>
-
-    <!-- Node 5 -->
-    <div class="ag-node" id="node-5" data-index="4">
-      <div class="node-top">
-        <span class="node-badge">05</span>
-        <div class="node-icon-dot"></div>
-      </div>
-      <div>
-        <div class="node-title">La Machine à Données</div>
-        <div class="node-sub">Économie & RGPD</div>
-      </div>
-      <div class="node-bottom">
-        <span>Tapis Roulant & Tampon</span>
-        <span class="node-enter-hint">Ouvrir &rarr;</span>
-      </div>
-    </div>
-
-    <!-- Node 6 -->
-    <div class="ag-node" id="node-6" data-index="5">
-      <div class="node-top">
-        <span class="node-badge">06</span>
-        <div class="node-icon-dot"></div>
-      </div>
-      <div>
-        <div class="node-title">Panneau de Contrôle</div>
-        <div class="node-sub">Solutions & Hygiène Numérique</div>
-      </div>
-      <div class="node-bottom">
-        <span>Smartphone 3D & 2FA</span>
-        <span class="node-enter-hint">Ouvrir &rarr;</span>
-      </div>
-    </div>
-  </main>
-
-  <!-- Interactive 3D Modal Overlay -->
-  <div id="focus-overlay" class="focus-overlay">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="modal-title-wrap">
-          <span id="modal-badge" class="modal-badge">01</span>
-          <span id="modal-title" class="modal-title">L'Iceberg</span>
-        </div>
-        <button id="modal-close" class="modal-close-btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          Quitter & Relâcher
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <div id="canvas-container" class="canvas-container">
-          <div id="laser-bar" class="laser-bar"></div>
-          <div id="glitch-flash" class="glitch-flash"></div>
+    <div class="presentation-container">
+        <!-- Electron Window Controls -->
+        <div class="electron-window-controls">
+            <button id="electron-min" class="electron-btn" aria-label="Minimize">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <button id="electron-max" class="electron-btn" aria-label="Maximize">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="14" height="14" rx="2" ry="2"/></svg>
+            </button>
+            <button id="electron-close" class="electron-btn" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
         </div>
 
-        <div class="step-ui-container">
-          <div id="step-info" class="step-info-card">
-            <div id="step-tag" class="step-tag">Étape 1 sur 4</div>
-            <div id="step-heading" class="step-heading">Vue d'ensemble de l'Iceberg</div>
-            <div id="step-desc" class="step-desc">L'identité numérique ne se résume pas à ce qui est visible. Seule la partie émergée est consciemment partagée.</div>
-            <div id="step-tags" class="step-tags-cloud"></div>
-          </div>
+        <!-- Brutalist Odometer Progress (12 Slides) -->
+        <div class="brutalist-counter" id="slideCounter">
+            <div class="counter-track" id="counterTrack">
+                <div class="counter-step">01</div><div class="counter-step">02</div>
+                <div class="counter-step">03</div><div class="counter-step">04</div>
+                <div class="counter-step">05</div><div class="counter-step">06</div>
+                <div class="counter-step">07</div><div class="counter-step">08</div>
+                <div class="counter-step">09</div><div class="counter-step">10</div>
+                <div class="counter-step">11</div><div class="counter-step">12</div>
+            </div>
+            <div class="counter-total">/ 12</div>
         </div>
-      </div>
 
-      <div class="modal-footer">
-        <div id="step-progress" class="step-progress-dots"></div>
-        <div class="controls-right">
-          <button id="btn-prev" class="action-btn btn-secondary">&larr; Précédent</button>
-          <button id="btn-next" class="action-btn btn-primary">Suivant &rarr;</button>
-        </div>
-      </div>
+        <!-- Slide 1: Cinematic Cover -->
+        <section class="slide active" id="slide-1">
+            <div class="grid grid-center bg-dark text-light overflow-visible">
+                <div class="halftone-bg"></div>
+                <div class="print-cylinder"></div>
+
+                <div class="content-wrapper-center z-index-10 text-center">
+                    <div class="cmyk-press-container">
+                        <h1 class="press-title screen-cyan" aria-hidden="true">L'Identité<br>Numérique</h1>
+                        <h1 class="press-title screen-magenta" aria-hidden="true">L'Identité<br>Numérique</h1>
+                        <h1 class="press-title screen-yellow" aria-hidden="true">L'Identité<br>Numérique</h1>
+                        <h1 class="press-title screen-white">L'Identité<br>Numérique</h1>
+                    </div>
+                    
+                    <div class="start-prompt-track" onclick="document.getElementById('nextBtn').click();">
+                        <div class="start-arrow-slider">
+                            <span class="slider-text">Appuyez pour démarrer</span>
+                            <svg class="slider-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Title & Presentation Meta -->
+        <section class="slide" id="slide-2">
+            <div class="grid grid-title">
+                <div class="slide-content">
+                    <div class="bg-motif bg-motif-top-right">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><circle cx="35" cy="50" r="30"/><circle cx="65" cy="50" r="30"/><circle cx="50" cy="20" r="30"/></svg>
+                    </div>
+                    <div class="presenter-tag">Sécurité & Société Numérique</div>
+                    <h1 class="huge-title">L'Identité Numérique</h1>
+                    <h2 class="subtitle">Traces, E-Réputation, Économie & Protection</h2>
+                    
+                    <div class="meta-info">
+                        <div class="meta-block">
+                            <span class="meta-label">
+                                <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                Présenté par
+                            </span>
+                            <span class="meta-value">Chohaib Soufiane</span>
+                        </div>
+                        <div class="meta-block">
+                            <span class="meta-label">
+                                <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                Module
+                            </span>
+                            <span class="meta-value">Culture Numérique & Cybersécurité</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-visual bg-accent text-light">
+                    <div class="visual-placeholder text-light" style="font-size: 3vw; font-weight: 900; letter-spacing: -0.03em; line-height: 1.1;">
+                        01. L'Iceberg<br>
+                        02. Les Traces<br>
+                        03. Le Miroir<br>
+                        04. La Faille<br>
+                        05. La Machine<br>
+                        06. Le Contrôle
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Introduction - L'Iceberg -->
+        <section class="slide" id="slide-3">
+            <div class="grid grid-split-right">
+                <div class="slide-visual bg-accent">
+                    <div class="visual-placeholder text-light" style="font-size: 3vw; font-weight: 900; line-height: 1.2;">
+                        L'Iceberg Numérique<br>
+                        <span style="font-size: 1.5vw; opacity: 0.85; font-weight: 500;">90% sous l'eau</span>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <div class="bg-motif bg-motif-bottom-right">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z" /><path d="M50 10 L50 50 M10 30 L50 50 M90 30 L50 50 M50 50 L50 90" /></svg>
+                    </div>
+
+                    <h2 class="slide-title">1. L'Iceberg de l'Identité</h2>
+                    <ul class="bullet-list">
+                        <li><strong>La Pointe Visible :</strong> Ce que l'internaute décide consciemment d'afficher au monde.</li>
+                        <li><strong>La Ligne de Surface :</strong> Les interactions du quotidien qui laissent des empreintes en continu.</li>
+                        <li><strong>La Base Invisible :</strong> Le traitement automatisé, silencieux et massif de chaque fragment de données.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Les 3 Niveaux de l'Iceberg -->
+        <section class="slide" id="slide-4">
+            <div class="grid grid-columns">
+                <div class="slide-title-wrapper" style="position: relative; overflow: hidden;">
+                    <div class="bg-motif bg-motif-bottom-left">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><line x1="20" y1="50" x2="80" y2="50"/><line x1="50" y1="20" x2="50" y2="80"/><circle cx="50" cy="50" r="40"/></svg>
+                    </div>
+                    <h2 class="slide-title">Les 3 Niveaux<br>d'Identité</h2>
+                </div>
+                <div class="col bg-dark text-light">
+                    <h3 class="col-title flex-title">1. Déclarative</h3>
+                    <ul class="bullet-list">
+                        <li>Profils publics & Réseaux sociaux.</li>
+                        <li>Nom, prénom, photos, biographies.</li>
+                        <li>Contenus partagés volontairement.</li>
+                    </ul>
+                </div>
+                <div class="col bg-light text-dark">
+                    <h3 class="col-title flex-title">2. Agissante</h3>
+                    <ul class="bullet-list">
+                        <li>Historique complet des requêtes Web.</li>
+                        <li>Achats et transactions électroniques.</li>
+                        <li>Mentions J'aime, partages, clics.</li>
+                        <li>Coordonnées GPS et déplacements.</li>
+                    </ul>
+                </div>
+                <div class="col bg-accent text-light">
+                    <h3 class="col-title flex-title">3. Calculée</h3>
+                    <ul class="bullet-list">
+                        <li>Profilage publicitaire algorithmique.</li>
+                        <li>Score d'e-réputation et solvabilité.</li>
+                        <li>Cookies tiers & traceurs de navigation.</li>
+                        <li>Catégorisation sociale et comportementale.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Traces Actives vs Traces Passives -->
+        <section class="slide" id="slide-5">
+            <div class="grid grid-split-left">
+                <div class="slide-content bg-light">
+                    <div class="bg-motif bg-motif-bottom-left">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                    </div>
+
+                    <h2 class="slide-title">2. Génération des Traces</h2>
+                    <ul class="bullet-list">
+                        <li><strong>Traces Actives (Volontaires) :</strong> Vos publications, messages, avis en ligne, photos et commentaires déposés explicitement.</li>
+                        <li><strong>Traces Passives (Invisibles) :</strong> Enregistrées à votre insu : adresse IP, modèle de terminal, système d'exploitation, temps passé par page.</li>
+                        <li><strong>L'Empreinte Numérique :</strong> La fusion de ces deux flux compose une toile indélébile qui subsiste des années après la navigation.</li>
+                    </ul>
+                </div>
+                <div class="slide-visual bg-gray">
+                    <div class="visual-placeholder text-dark" style="font-size: 2.2vw; font-weight: 800; line-height: 1.4;">
+                        Actives<br>
+                        <span style="color: var(--color-accent);">&#8593; Photos, Posts, Likes</span><br><br>
+                        Passives<br>
+                        <span style="color: #64748b;">&#8595; IP, Métadonnées, Télémétrie</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Le Miroir de l'E-Réputation -->
+        <section class="slide" id="slide-6">
+            <div class="grid grid-split-right">
+                <div class="slide-visual bg-dark text-light">
+                    <div class="visual-placeholder text-light" style="font-size: 2vw; font-weight: 800; line-height: 1.5;">
+                        <span style="color: #38bdf8;">Face A :</span> Profil LinkedIn Soigné<br>
+                        <span style="color: #f43f5e;">Face B :</span> Le Shadow Profile<br>
+                        <span style="color: #f59e0b;">Score :</span> Audit d'E-Réputation
+                    </div>
+                </div>
+                <div class="slide-content bg-light">
+                    <div class="bg-motif bg-motif-top-right">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1"><circle cx="50" cy="50" r="40"/><circle cx="50" cy="50" r="20"/><line x1="0" y1="50" x2="100" y2="50"/><line x1="50" y1="0" x2="50" y2="100"/></svg>
+                    </div>
+
+                    <h2 class="slide-title">3. Le Miroir de l'E-Réputation</h2>
+                    <ul class="bullet-list">
+                        <li><strong>Ce que vous pensez montrer :</strong> Un profil professionnel soigné, maîtrisé, sans aspérités.</li>
+                        <li><strong>Le Shadow Profile :</strong> Les vieux commentaires sur forums, photos oubliées taguées par des tiers et résultats de moteurs de recherche.</li>
+                        <li><strong>L'Audit Automatisé :</strong> Les recruteurs et algorithmes analysent le faisceau global pour établir un score de crédibilité.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: La Faille - Cybersécurité & Menaces -->
+        <section class="slide" id="slide-7">
+            <div class="grid grid-split-left">
+                <div class="slide-content bg-dark text-light">
+                    <div class="bg-motif bg-motif-bottom-left">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+
+                    <h2 class="slide-title text-light">4. La Faille : Menaces</h2>
+                    <ul class="bullet-list">
+                        <li><strong>Ingénierie Sociale & Hameçonnage :</strong> Les attaquants exploitent vos données publiques pour créer des pièges de phishing ultra-ciblés.</li>
+                        <li><strong>Fuite de Données (Data Breaches) :</strong> Lorsque les plateformes sont compromises, vos mots de passe et identifiants circulent sur le dark web.</li>
+                        <li><strong>Usurpation d'Identité :</strong> Quelques éléments combinés (nom, date de naissance, RIB ou photo) suffisent à ouvrir des crédits ou contracter des abonnements à votre insu.</li>
+                    </ul>
+                </div>
+                <div class="slide-visual bg-accent text-light">
+                    <div class="visual-placeholder text-light" style="font-size: 2.2vw; font-weight: 900; line-height: 1.4;">
+                        ALERTE DE SÉCURITÉ<br>
+                        <span style="font-size: 1.4vw; font-weight: 500; opacity: 0.9;">
+                        &bull; Phishing ciblé<br>
+                        &bull; Identifiants compromis<br>
+                        &bull; Usurpation bancaire
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: La Machine à Données - Modèle Économique -->
+        <section class="slide" id="slide-8">
+            <div class="grid grid-split-right">
+                <div class="slide-visual bg-gray">
+                    <div class="visual-placeholder text-dark" style="font-size: 2.2vw; font-weight: 900; line-height: 1.4;">
+                        "Si c'est gratuit,<br>
+                        <span style="color: var(--color-accent);">c'est vous le produit."</span>
+                    </div>
+                </div>
+                <div class="slide-content bg-light">
+                    <div class="bg-motif bg-motif-bottom-right">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 6v2m0 8v2"/></svg>
+                    </div>
+
+                    <h2 class="slide-title">5. La Machine à Données</h2>
+                    <ul class="bullet-list">
+                        <li><strong>Les Courtiers en Données (Data Brokers) :</strong> Agrègent des milliards de points de contact pour commercialiser des profils consommateur prêts à l'emploi.</li>
+                        <li><strong>Enchères en Temps Réel (RTB) :</strong> À chaque chargement de page, vos données sont vendues aux enchères en une fraction de seconde aux annonceurs.</li>
+                        <li><strong>Capitalisme de Surveillance :</strong> La prédiction et la modification des comportements humains constituent le cœur de ce modèle d'affaires.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Cadre Légal & Régulations (RGPD / CNDP) -->
+        <section class="slide" id="slide-9">
+            <div class="grid grid-vertical bg-light" style="position: relative; overflow: hidden;">
+                <div class="bg-motif bg-motif-bottom-right">
+                    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1"><circle cx="35" cy="50" r="30"/><circle cx="65" cy="50" r="30"/></svg>
+                </div>
+                <div class="slide-header-full" style="position: relative; z-index: 2;">
+                    <h2 class="slide-title text-center">Cadre Juridique : Bouclier de Protection</h2>
+                </div>
+                <div class="comparison-table flexo-3way-table">
+                    <div class="comp-col border-right">
+                        <h3 class="comp-title">RGPD (Europe)</h3>
+                        <ul class="bullet-list tight">
+                            <li><strong>Consentement :</strong> Doit être libre, spécifique et éclairé.</li>
+                            <li><strong>Droit à l'oubli :</strong> Suppression sur demande des données personnelles.</li>
+                            <li><strong>Portabilité :</strong> Récupération de ses données pour changer de service.</li>
+                            <li><strong>Sanctions :</strong> Jusqu'à 4% du chiffre d'affaires mondial.</li>
+                        </ul>
+                    </div>
+                    <div class="comp-col border-right">
+                        <h3 class="comp-title">CNDP (Maroc)</h3>
+                        <ul class="bullet-list tight">
+                            <li><strong>Loi 09-08 :</strong> Protection des personnes physiques face aux traitements.</li>
+                            <li><strong>Déclarations :</strong> Obligation d'autorisation préalable des fichiers.</li>
+                            <li><strong>Droits garantis :</strong> Droit d'accès, de rectification et d'opposition.</li>
+                            <li><strong>Transferts :</strong> Encadrement strict hors du territoire national.</li>
+                        </ul>
+                    </div>
+                    <div class="comp-col">
+                        <h3 class="comp-title">Vos Droits Fondamentaux</h3>
+                        <ul class="bullet-list tight">
+                            <li><strong>Droit d'accès :</strong> Savoir précisément quelles données sont détenues.</li>
+                            <li><strong>Droit de rectification :</strong> Corriger les données erronées.</li>
+                            <li><strong>Minimisation :</strong> Les services ne doivent collecter que le strict nécessaire.</li>
+                            <li><strong>Sécurité :</strong> Les hébergeurs ont l'obligation légale de protéger les données.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Le Panneau de Contrôle - Solutions Pratiques -->
+        <section class="slide" id="slide-10">
+            <div class="grid grid-columns">
+                <div class="slide-title-wrapper" style="position: relative; overflow: hidden;">
+                    <div class="bg-motif bg-motif-bottom-left">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><line x1="20" y1="50" x2="80" y2="50"/><line x1="50" y1="20" x2="50" y2="80"/><circle cx="50" cy="50" r="40"/></svg>
+                    </div>
+                    <h2 class="slide-title">6. Le Panneau<br>de Contrôle</h2>
+                </div>
+                <div class="col bg-dark text-light">
+                    <h3 class="col-title flex-title">1. Réglages Appareils</h3>
+                    <ul class="bullet-list">
+                        <li>Désactiver la géolocalisation permanente en arrière-plan.</li>
+                        <li>Bloquer l'accès au micro et à la caméra pour les apps non nécessaires.</li>
+                        <li>Refuser systématiquement les cookies de pistage tiers.</li>
+                    </ul>
+                </div>
+                <div class="col bg-accent text-light">
+                    <h3 class="col-title flex-title">2. Hygiène des Accès</h3>
+                    <ul class="bullet-list">
+                        <li>Activer l'authentification à deux facteurs (2FA via app d'authentification).</li>
+                        <li>Utiliser un gestionnaire de mots de passe (Bitwarden, 1Password).</li>
+                        <li>Ne jamais réutiliser le même mot de passe sur deux services.</li>
+                    </ul>
+                </div>
+                <div class="col bg-light text-dark">
+                    <h3 class="col-title flex-title">3. Navigation Chiffrée</h3>
+                    <ul class="bullet-list">
+                        <li>Privilégier les moteurs respectueux (Brave Search, DuckDuckGo).</li>
+                        <li>Utiliser un résolveur DNS chiffré et un VPN de confiance.</li>
+                        <li>Compartimenter : un compte pro et un compte personnel distincts.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Synthèse & Check-list d'Hygiène Numérique -->
+        <section class="slide" id="slide-11">
+            <div class="grid grid-split-left">
+                <div class="slide-content bg-light">
+                    <div class="bg-motif bg-motif-bottom-left">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                    </div>
+
+                    <h2 class="slide-title">Check-list d'Hygiène Numérique</h2>
+                    <ul class="bullet-list large-text">
+                        <li><strong>Audit semestriel :</strong> Tapez votre nom entre guillemets sur Google pour vérifier votre Face B.</li>
+                        <li><strong>Nettoyage des comptes :</strong> Supprimez les vieux profils et services inutilisés depuis plus d'un an.</li>
+                        <li><strong>Principe de précaution :</strong> Ce qui est publié en ligne est potentiellement éternel et duplicable.</li>
+                    </ul>
+                </div>
+                <div class="slide-visual bg-dark text-light">
+                    <div class="visual-placeholder text-light" style="font-size: 2.2vw; font-weight: 800; line-height: 1.5;">
+                        Les 3 Règles d'Or :<br><br>
+                        <span style="color: #38bdf8;">1.</span> Réfléchir avant de publier<br>
+                        <span style="color: #f59e0b;">2.</span> Verrouiller ses accès (2FA)<br>
+                        <span style="color: #10b981;">3.</span> Exercer ses droits (RGPD)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 12: Conclusion & Q/R -->
+        <section class="slide" id="slide-12">
+            <div class="grid grid-title">
+                <div class="slide-content bg-light text-dark">
+                    <div class="bg-motif bg-motif-top-right">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <h1 class="huge-title">Merci pour<br>votre attention</h1>
+                    <h2 class="subtitle">Avez-vous des questions ?</h2>
+                    <div class="meta-info" style="margin-top: 4rem;">
+                        <div class="meta-block">
+                            <span class="meta-label">
+                                <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                Échange & Discussion
+                            </span>
+                            <span class="meta-value">Dossier sur l'Identité Numérique et la Protection des Données</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-visual bg-accent text-light" style="position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
+                    <div style="font-size: 3vw; font-weight: 900; line-height: 1.2;">
+                        Protégez votre identité.<br>
+                        <span style="font-size: 1.6vw; font-weight: 500; opacity: 0.85;">Elle vous appartient.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Controls -->
+        <nav class="presentation-nav">
+            <button id="prevBtn" class="nav-btn" aria-label="Previous slide">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button id="nextBtn" class="nav-btn" aria-label="Next slide">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+        </nav>
     </div>
-  </div>
 
-  <!-- Local Offline Three.js Script -->
-  <script src="./node_modules/three/build/three.min.js"></script>
-  <!-- Main Presentation Application Controller -->
-  <script src="script.js"></script>
+    <!-- Cinematic Video Fullscreen Overlay -->
+    <div class="video-fullscreen-backdrop" id="videoBackdrop"></div>
+    <button class="video-close-btn" id="videoCloseBtn" aria-label="Close video">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <script src="script.js"></script>
 </body>
 </html>
