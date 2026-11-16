@@ -3,9 +3,30 @@
   "version": "1.0.0",
   "description": "Presentation immersive et interactive sur l'Identite Numerique avec moteur antigravite et 3D.",
   "main": "main.js",
+  "author": {
+    "name": "Chohaib Soufiane",
+    "email": "chohaibsoufiane@gmail.com",
+    "url": "https://github.com/chohaibsoufiane"
+  },
+  "contributors": [
+    "Chohaib Soufiane <chohaibsoufiane@gmail.com>",
+    "Mohammed Badaoui",
+    "Mehdi El Bouazizi",
+    "Youssef El Mekkaoui",
+    "Rayane El Makhloufi",
+    "Mhaitate Aymen",
+    "Oualid Driwch",
+    "Abdllah Amhil",
+    "Bafrij Ilyass"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chohaibsoufiane/Concept-Identite-Numerique.git"
+  },
+  "homepage": "https://github.com/chohaibsoufiane/Concept-Identite-Numerique#readme",
   "scripts": {
-    "start": "electron .",
-    "dev": "electron ."
+    "start": "node scripts/run-electron.cjs",
+    "dev": "node scripts/run-electron.cjs"
   },
   "devDependencies": {
     "electron": "^31.0.0",

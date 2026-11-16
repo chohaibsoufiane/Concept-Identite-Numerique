@@ -1,3 +1,10 @@
+/**
+ * @file preload.js
+ * @project Concept d'Identité Numérique (INFO208)
+ * @author Chohaib Soufiane <chohaibsoufiane@gmail.com>
+ * @repository https://github.com/chohaibsoufiane/Concept-Identite-Numerique
+ */
+
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
