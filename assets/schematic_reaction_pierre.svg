@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 900; font-size: 16px; fill: #FFFFFF; letter-spacing: 0.05em; }
+      .subtitle { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 12px; fill: #E32619; text-anchor: end; }
+      .label-head { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 13px; text-transform: uppercase; }
+      .label-desc { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 500; font-size: 11px; fill: #333333; }
+      .formula { font-family: 'Courier New', monospace; font-weight: 700; font-size: 13px; fill: #0A0A0A; }
+      .badge-text { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 10px; fill: #FFFFFF; text-anchor: middle; }
+    </style>
+    <!-- Crosshair Target Marker -->
+    <pattern id="target-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#E32619" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0077B6" />
+    </marker>
+    <marker id="arrow-dark" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0A0A0A" />
+    </marker>
+  </defs>
+
+  <!-- Background Canvas & Grid -->
+  <rect width="800" height="500" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="3"/>
+  <rect x="0" y="52" width="800" height="448" fill="url(#target-grid)" />
+
+  <!-- Top Header Bar (Brutalist Dark) -->
+  <rect x="0" y="0" width="800" height="52" fill="#0A0A0A"/>
+  <text x="24" y="32" class="title">SCH-02 : COUPE MICROSTRUCTURELLE &amp; RÉACTION DU CALCAIRE</text>
+  <text x="776" y="32" class="subtitle">SOLNHOFEN (1796) &#8226; CaCO₃</text>
+
+  <!-- Central Division Line -->
+  <line x1="400" y1="52" x2="400" y2="440" stroke="#0A0A0A" stroke-width="2" stroke-dasharray="6 4"/>
+
+  <!-- ====================================================================== -->
+  <!-- ZONE GAUCHE : NON-IMPRIMANTE (HYDROPHILE)                              -->
+  <!-- ====================================================================== -->
+  <g transform="translate(40, 75)">
+    <!-- Zone Badge -->
+    <rect x="0" y="0" width="160" height="22" fill="#0077B6" rx="2"/>
+    <text x="80" y="15" class="badge-text">ZONE NON-IMPRIMANTE</text>
+    <text x="175" y="16" class="label-head" fill="#0077B6">Hydrophile &#8226; Blancs</text>
+
+    <!-- Infiltration Arrows -->
+    <line x1="160" y1="45" x2="160" y2="90" stroke="#0077B6" stroke-width="3" marker-end="url(#arrow-blue)"/>
+    <text x="160" y="40" class="label-desc" text-anchor="middle" font-weight="700" fill="#0077B6">Gomme Arabique + HNO₃</text>
+
+    <!-- Water Film Layer (Top of Limestone) -->
+    <rect x="0" y="95" width="320" height="18" fill="#90E0EF" stroke="#0077B6" stroke-width="1.5"/>
+    <text x="160" y="108" class="label-desc" text-anchor="middle" font-weight="700" fill="#03045E">Film d'Eau de Mouillage (H₂O)</text>
+
+    <!-- Limestone Substrate Block -->
+    <rect x="0" y="113" width="320" height="150" fill="#EAE6DF" stroke="#0A0A0A" stroke-width="2"/>
+    <text x="16" y="245" class="label-head" fill="#8D8175">Pierre Calcaire (CaCO₃)</text>
+
+    <!-- Pores infiltrated with Hydrophilic Salt (Light Cyan Pores) -->
+    <path d="M 40 113 Q 50 145 65 145 Q 80 145 75 113 Z" fill="#0096C7" stroke="#0A0A0A" stroke-width="1"/>
+    <path d="M 120 113 Q 135 160 150 160 Q 165 160 160 113 Z" fill="#0096C7" stroke="#0A0A0A" stroke-width="1"/>
+    <path d="M 210 113 Q 220 135 240 135 Q 260 135 250 113 Z" fill="#0096C7" stroke="#0A0A0A" stroke-width="1"/>
+    <path d="M 280 113 Q 290 150 305 150 Q 315 150 310 113 Z" fill="#0096C7" stroke="#0A0A0A" stroke-width="1"/>
+
+    <!-- Microscopic Reaction Label -->
+    <rect x="40" y="180" width="240" height="42" fill="#FFFFFF" stroke="#0077B6" stroke-width="1.5"/>
+    <text x="160" y="197" class="label-desc" text-anchor="middle" font-weight="700" fill="#0077B6">Sel d'Arabate de Calcium</text>
+    <text x="160" y="212" class="label-desc" text-anchor="middle">Couche hautement hygroscopique</text>
+
+    <!-- Grease Repulsion Arrow -->
+    <path d="M 260 55 Q 260 85 290 85" fill="none" stroke="#E32619" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+    <text x="295" y="80" class="label-desc" font-weight="700" fill="#E32619">Encre Repoussée</text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- ZONE DROITE : IMPRIMANTE (OLÉOPHILE)                                  -->
+  <!-- ====================================================================== -->
+  <g transform="translate(440, 75)">
+    <!-- Zone Badge -->
+    <rect x="0" y="0" width="140" height="22" fill="#E32619" rx="2"/>
+    <text x="70" y="15" class="badge-text">ZONE IMPRIMANTE</text>
+    <text x="155" y="16" class="label-head" fill="#E32619">Oléophile &#8226; Encre</text>
+
+    <!-- Inking Arrows -->
+    <line x1="160" y1="45" x2="160" y2="90" stroke="#E32619" stroke-width="3" marker-end="url(#arrow-red)"/>
+    <text x="160" y="40" class="label-desc" text-anchor="middle" font-weight="700" fill="#E32619">Encre Grasse Lithographique</text>
+
+    <!-- Greasy Ink Layer (Top of Limestone) -->
+    <rect x="0" y="95" width="320" height="18" fill="#0A0A0A" stroke="#0A0A0A" stroke-width="1.5"/>
+    <text x="160" y="108" class="label-desc" text-anchor="middle" font-weight="700" fill="#FFFFFF">Film d'Encre Grasse (Lipophile)</text>
+
+    <!-- Limestone Substrate Block -->
+    <rect x="0" y="113" width="320" height="150" fill="#EAE6DF" stroke="#0A0A0A" stroke-width="2"/>
+    <text x="16" y="245" class="label-head" fill="#8D8175">Pierre Calcaire (CaCO₃)</text>
+
+    <!-- Pores infiltrated with Greasy Ink (Black/Charcoal Pores) -->
+    <path d="M 40 113 Q 50 155 65 155 Q 80 155 75 113 Z" fill="#0A0A0A" stroke="#0A0A0A" stroke-width="1"/>
+    <path d="M 120 113 Q 135 140 150 140 Q 165 140 160 113 Z" fill="#0A0A0A" stroke="#0A0A0A" stroke-width="1"/>
+    <path d="M 210 113 Q 220 165 240 165 Q 260 165 250 113 Z" fill="#0A0A0A" stroke="#0A0A0A" stroke-width="1"/>
+    <path d="M 280 113 Q 290 135 305 135 Q 315 135 310 113 Z" fill="#0A0A0A" stroke="#0A0A0A" stroke-width="1"/>
+
+    <!-- Oleomargarate Chemical Label -->
+    <rect x="40" y="180" width="240" height="42" fill="#FFFFFF" stroke="#E32619" stroke-width="1.5"/>
+    <text x="160" y="197" class="label-desc" text-anchor="middle" font-weight="700" fill="#E32619">Oléomargarate de Calcium</text>
+    <text x="160" y="212" class="label-desc" text-anchor="middle">Liaisons grasses insolubles</text>
+
+    <!-- Water Repulsion Droplet -->
+    <path d="M 25 75 C 25 65 40 50 40 50 C 40 50 55 65 55 75 C 55 83 48 90 40 90 C 32 90 25 83 25 75 Z" fill="#90E0EF" stroke="#0077B6" stroke-width="1.5"/>
+    <path d="M 58 70 Q 75 70 85 55" fill="none" stroke="#0077B6" stroke-width="2" marker-end="url(#arrow-blue)"/>
+    <text x="90" y="55" class="label-desc" font-weight="700" fill="#0077B6">Eau rejetée</text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- BANDEAU INFÉRIEUR : ÉQUATION CHIMIQUE & LÉGENDE                        -->
+  <!-- ====================================================================== -->
+  <g transform="translate(40, 420)">
+    <!-- Reaction Box -->
+    <rect x="0" y="0" width="720" height="52" fill="#F4F5F6" stroke="#0A0A0A" stroke-width="2"/>
+    <text x="20" y="22" class="label-head" fill="#E32619">Équation Clé :</text>
+    <text x="125" y="22" class="formula">CaCO₃ + 2 HNO₃ ➔ Ca(NO₃)₂ + H₂O + CO₂↑</text>
+    <text x="20" y="42" class="label-desc">
+      Formation simultanée de sels d'arabinates hydrophiles dans les blancs et d'acides gras insolubles dans les graphismes.
+    </text>
+
+    <!-- Registration Target Bottom Right -->
+    <circle cx="690" cy="26" r="14" fill="none" stroke="#0A0A0A" stroke-width="1.5"/>
+    <line x1="690" y1="8" x2="690" y2="44" stroke="#0A0A0A" stroke-width="1.5"/>
+    <line x1="672" y1="26" x2="708" y2="26" stroke="#0A0A0A" stroke-width="1.5"/>
+  </g>
+</svg>

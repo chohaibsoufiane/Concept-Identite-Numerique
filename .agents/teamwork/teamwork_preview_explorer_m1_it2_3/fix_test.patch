@@ -1,0 +1,19 @@
+--- a/tests/e2e-presentation.test.mjs
++++ b/tests/e2e-presentation.test.mjs
+@@ -610,6 +610,16 @@
+-  await t.test('4.5 Adversarial: Invalid & Extreme Input Rejections', () => {
++  await t.test('4.5 Adversarial: Invalid & Extreme Input Rejections in script.js', () => {
++    // 1. Direct static contract assertion on script.js
++    const goToSlideMatch = js.match(/function\s+goToSlide\s*\([^\)]*\)\s*\{([\s\S]*?)(?:const\s+current|container\.setAttribute)/i);
++    assert.ok(goToSlideMatch, 'goToSlide function definition not found in script.js');
++    const headerCode = goToSlideMatch[1];
++    assert.match(
++      headerCode,
++      /if\s*\(\s*typeof\s+index\s*!==\s*['"]number['"]\s*\|\|\s*!Number\.isInteger\s*\(\s*index\s*\)\s*\)\s*return;?/i,
++      'script.js goToSlide() must sanitize index type (reject non-numeric and non-integer) before initiating transition'
++    );
++
++    // 2. State machine simulator verification
+     const deck = new PresentationDeckSimulator(totalSlides);
+     assert.equal(deck.goToSlide(NaN), false, 'NaN index must be rejected');
+     assert.equal(deck.goToSlide(Infinity), false, 'Infinity index must be rejected');

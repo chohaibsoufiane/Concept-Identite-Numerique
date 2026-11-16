@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 900; font-size: 15px; fill: #FFFFFF; letter-spacing: 0.05em; }
+      .subtitle { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; fill: #E32619; text-anchor: end; }
+      .label-head { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+      .label-sub { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; }
+      .label-desc { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 500; font-size: 10px; fill: #333333; }
+      .badge-text { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 9px; fill: #FFFFFF; text-anchor: middle; }
+      .param-val { font-family: 'Courier New', monospace; font-weight: 700; font-size: 11px; fill: #0A0A0A; }
+    </style>
+    <pattern id="grid-typ" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="3"/>
+  <rect x="0" y="52" width="800" height="448" fill="url(#grid-typ)" />
+
+  <rect x="0" y="0" width="800" height="52" fill="#0A0A0A"/>
+  <text x="24" y="32" class="title">SCH-17 : RÉPARTITION TYPOLOGIQUE DU MARCHÉ</text>
+  <text x="776" y="32" class="subtitle">80% PLAQUES POSITIVES (LABEUR) &#8226; 20% NÉGATIVES (JOURNAUX / ROTATIVES)</text>
+
+  <!-- Left Chart: 80% vs 20% Bar Graph -->
+  <g transform="translate(30, 75)">
+    <rect x="0" y="0" width="370" height="320" fill="#F8FAFC" stroke="#0A0A0A" stroke-width="1.5"/>
+    <rect x="15" y="10" width="220" height="20" fill="#0A0A0A"/>
+    <text x="125" y="24" class="badge-text">RÉPARTITION SECTORIELLE</text>
+
+    <!-- Bar 80% Positives -->
+    <g transform="translate(30, 60)">
+      <text x="0" y="18" class="label-head" fill="#E32619">Plaques Positives : 80%</text>
+      <rect x="0" y="28" width="250" height="40" fill="#E32619"/>
+      <text x="125" y="53" class="badge-text" font-size="13px">80% DU MARCHÉ MONDIAL</text>
+      <text x="0" y="86" class="label-desc">Secteurs : Édition d'art, catalogues, brochures commerciales, labeur de précision.</text>
+    </g>
+
+    <!-- Bar 20% Négatives -->
+    <g transform="translate(30, 180)">
+      <text x="0" y="18" class="label-head" fill="#0A0A0A">Plaques Négatives : 20%</text>
+      <rect x="0" y="28" width="65" height="40" fill="#0A0A0A"/>
+      <text x="32" y="53" class="badge-text" font-size="11px">20%</text>
+      <text x="0" y="86" class="label-desc">Secteurs : Presse quotidienne régionale, journaux, formulaires continus rotatives.</text>
+    </g>
+  </g>
+
+  <!-- Right: Operational Comparison -->
+  <g transform="translate(420, 75)">
+    <rect x="0" y="0" width="350" height="320" fill="#F8FAFC" stroke="#0A0A0A" stroke-width="1.5"/>
+    <rect x="15" y="10" width="220" height="20" fill="#0A0A0A"/>
+    <text x="125" y="24" class="badge-text">DIFFÉRENCIATEURS D'USAGE</text>
+
+    <g transform="translate(20, 45)">
+      <rect x="0" y="0" width="310" height="110" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1"/>
+      <text x="15" y="22" class="label-head" fill="#E32619">Plaques Positives (Labeur)</text>
+      <text x="15" y="42" class="label-desc">&bull; Haute résolution de trame : 175 à 300 lpi.</text>
+      <text x="15" y="60" class="label-desc">&bull; Reproductibilité fine des détails en demi-teinte.</text>
+      <text x="15" y="78" class="label-desc">&bull; Contrôle direct aisé des films positifs.</text>
+      <text x="15" y="96" class="label-desc">&bull; Cadence feuille à feuille optimale.</text>
+    </g>
+
+    <g transform="translate(20, 175)">
+      <rect x="0" y="0" width="310" height="110" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1"/>
+      <text x="15" y="22" class="label-head">Plaques Négatives (Rotatives)</text>
+      <text x="15" y="42" class="label-desc">&bull; Endurance mécanique supérieure aux frottements.</text>
+      <text x="15" y="60" class="label-desc">&bull; Résistance aux papiers journaux très abrasifs.</text>
+      <text x="15" y="78" class="label-desc">&bull; Vitesse d'insolation rapide pour bouclage presse.</text>
+      <text x="15" y="96" class="label-desc">&bull; Adapté aux tirages massifs sans cuisson.</text>
+    </g>
+  </g>
+
+  <!-- Bottom Banner -->
+  <g transform="translate(30, 415)">
+    <rect x="0" y="0" width="740" height="65" fill="#0A0A0A"/>
+    <text x="25" y="26" class="title" fill="#FFFFFF" font-size="12px">CONCLUSION SECTORIELLE</text>
+    <text x="25" y="48" class="label-desc" fill="#D1D5DB">La suprématie de la plaque positive (80%) repose sur la perfection géométrique du point et l'absence totale de frange parasite.</text>
+  </g>
+</svg>

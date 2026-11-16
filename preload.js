@@ -1,3 +1,8 @@
+/**
+ * @file preload.js
+ * @project Production des Formes Imprimantes — Les Plaques Offset
+ */
+
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {

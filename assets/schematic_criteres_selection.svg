@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 900; font-size: 15px; fill: #FFFFFF; letter-spacing: 0.05em; }
+      .subtitle { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; fill: #E32619; text-anchor: end; }
+      .label-head { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+      .label-sub { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; }
+      .label-desc { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 500; font-size: 10px; fill: #333333; }
+      .badge-text { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 9px; fill: #FFFFFF; text-anchor: middle; }
+      .param-val { font-family: 'Courier New', monospace; font-weight: 700; font-size: 11px; fill: #0A0A0A; }
+    </style>
+    <pattern id="grid-crit" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="3"/>
+  <rect x="0" y="52" width="800" height="448" fill="url(#grid-crit)" />
+
+  <rect x="0" y="0" width="800" height="52" fill="#0A0A0A"/>
+  <text x="24" y="32" class="title">SCH-18 : LES 9 CRITÈRES DE SÉLECTION INDUSTRIELLE</text>
+  <text x="776" y="32" class="subtitle">ENDURANCE &#8226; NATURE DU SUPPORT &amp; COUCHE &#8226; COÛT &amp; RENTABILITÉ</text>
+
+  <!-- 9 Criteria Grid (3x3 boxes) -->
+  <g transform="translate(30, 75)">
+    <!-- Row 1 -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="235" height="95" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+      <rect x="10" y="8" width="28" height="18" fill="#E32619"/>
+      <text x="24" y="21" class="badge-text">01</text>
+      <text x="45" y="22" class="label-head">Tirage &amp; Endurance</text>
+      <text x="12" y="46" class="label-desc">Volume d'exemplaires attendu :</text>
+      <text x="12" y="62" class="param-val">50k, 250k, ou &gt; 1 Million</text>
+      <text x="12" y="78" class="label-desc">Détermine mono vs polymétallique.</text>
+    </g>
+
+    <g transform="translate(252, 0)">
+      <rect x="0" y="0" width="235" height="95" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+      <rect x="10" y="8" width="28" height="18" fill="#0A0A0A"/>
+      <text x="24" y="21" class="badge-text">02</text>
+      <text x="45" y="22" class="label-head">Support &amp; Couche</text>
+      <text x="12" y="46" class="label-desc">Nature métal et chimie :</text>
+      <text x="12" y="62" class="param-val">Alu anodisé / Diazo ou Polymer</text>
+      <text x="12" y="78" class="label-desc">Résistance à la corrosion et solvants.</text>
+    </g>
+
+    <g transform="translate(504, 0)">
+      <rect x="0" y="0" width="235" height="95" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+      <rect x="10" y="8" width="28" height="18" fill="#0A0A0A"/>
+      <text x="24" y="21" class="badge-text">03</text>
+      <text x="45" y="22" class="label-head">Linéature de Trame</text>
+      <text x="12" y="46" class="label-desc">Finesse de reproduction requise :</text>
+      <text x="12" y="62" class="param-val">133, 150, 175 ou 300 lpi</text>
+      <text x="12" y="78" class="label-desc">Exige grainage électrochimique fin.</text>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(0, 110)">
+      <rect x="0" y="0" width="235" height="95" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+      <rect x="10" y="8" width="28" height="18" fill="#0A0A0A"/>
+      <text x="24" y="21" class="badge-text">04</text>
+      <text x="45" y="22" class="label-head">Format &amp; Épaisseur</text>
+      <text x="12" y="46" class="label-desc">Dimensions cylindre presse :</text>
+      <text x="12" y="62" class="param-val">0.15 mm à 0.40 mm</text>
+      <text x="12" y="78" class="label-desc">Stabilité dimensionnelle sous tension.</text>
+    </g>
+
+    <g transform="translate(252, 110)">
+      <rect x="0" y="0" width="235" height="95" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+      <rect x="10" y="8" width="28" height="18" fill="#0A0A0A"/>
+      <text x="24" y="21" class="badge-text">05</text>
+      <text x="45" y="22" class="label-head">Temps d'Insolation</text>
+      <text x="12" y="46" class="label-desc">Sensibilité aux UV :</text>
+      <text x="12" y="62" class="param-val">Rapidité de cycle châssis</text>
+      <text x="12" y="78" class="label-desc">Bouclage d'urgence en quotidien.</text>
+    </g>
+
+    <g transform="translate(504, 110)">
+      <rect x="0" y="0" width="235" height="95" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+      <rect x="10" y="8" width="28" height="18" fill="#0A0A0A"/>
+      <text x="24" y="21" class="badge-text">06</text>
+      <text x="45" y="22" class="label-head">Chimie Révélation</text>
+      <text x="12" y="46" class="label-desc">Écologie et retraitement :</text>
+      <text x="12" y="62" class="param-val">Alcalin aqueux / Sans chimie</text>
+      <text x="12" y="78" class="label-desc">Durabilité et normes environnement.</text>
+    </g>
+
+    <!-- Row 3 -->
+    <g transform="translate(0, 220)">
+      <rect x="0" y="0" width="235" height="95" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+      <rect x="10" y="8" width="28" height="18" fill="#0A0A0A"/>
+      <text x="24" y="21" class="badge-text">07</text>
+      <text x="45" y="22" class="label-head">Comportement Presse</text>
+      <text x="12" y="46" class="label-desc">Équilibre dynamique eau/encre :</text>
+      <text x="12" y="62" class="param-val">Calage rapide, faible gâche</text>
+      <text x="12" y="78" class="label-desc">Maintien de l'hydrophilie continue.</text>
+    </g>
+
+    <g transform="translate(252, 220)">
+      <rect x="0" y="0" width="235" height="95" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+      <rect x="10" y="8" width="28" height="18" fill="#0A0A0A"/>
+      <text x="24" y="21" class="badge-text">08</text>
+      <text x="45" y="22" class="label-head">Aptitude à la Cuisson</text>
+      <text x="12" y="46" class="label-desc">Cuisson au four (Baking) :</text>
+      <text x="12" y="62" class="param-val">Four 240°C &#8594; x3 endurance</text>
+      <text x="12" y="78" class="label-desc">Pour encres UV agressives.</text>
+    </g>
+
+    <g transform="translate(504, 220)">
+      <rect x="0" y="0" width="235" height="95" fill="#FFFFFF" stroke="#E32619" stroke-width="2"/>
+      <rect x="10" y="8" width="28" height="18" fill="#E32619"/>
+      <text x="24" y="21" class="badge-text">09</text>
+      <text x="45" y="22" class="label-head" fill="#E32619">Prix de Revient</text>
+      <text x="12" y="46" class="label-desc">Arbitrage coût unitaire global :</text>
+      <text x="12" y="62" class="param-val" fill="#E32619">Coût Plaque vs Gâche Papier</text>
+      <text x="12" y="78" class="label-desc">Rentabilité économique du tirage.</text>
+    </g>
+  </g>
+
+  <!-- Bottom Banner -->
+  <g transform="translate(30, 415)">
+    <rect x="0" y="0" width="740" height="65" fill="#0A0A0A"/>
+    <text x="25" y="26" class="title" fill="#FFFFFF" font-size="12px">OPTIMISATION DE L'ATELIER D'IMPRESSION</text>
+    <text x="25" y="48" class="label-desc" fill="#D1D5DB">L'analyse conjointe des 9 paramètres garantit la rentabilité optimale sans rupture de tirage sur machine.</text>
+  </g>
+</svg>

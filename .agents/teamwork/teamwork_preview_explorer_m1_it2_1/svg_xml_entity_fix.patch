@@ -1,0 +1,72 @@
+--- assets/schematic_reaction_pierre.svg
++++ assets/schematic_reaction_pierre.svg
+@@ -30,7 +30,7 @@
+   <!-- Top Header Bar (Brutalist Dark) -->
+   <rect x="0" y="0" width="800" height="52" fill="#0A0A0A"/>
+   <text x="24" y="32" class="title">SCH-02 : COUPE MICROSTRUCTURELLE &amp; RÉACTION DU CALCAIRE</text>
+-  <text x="776" y="32" class="subtitle">SOLNHOFEN (1796) &bull; CaCO₃</text>
++  <text x="776" y="32" class="subtitle">SOLNHOFEN (1796) &#8226; CaCO₃</text>
+ 
+   <!-- Central Division Line -->
+   <line x1="400" y1="52" x2="400" y2="440" stroke="#0A0A0A" stroke-width="2" stroke-dasharray="6 4"/>
+@@ -42,7 +42,7 @@
+     <!-- Zone Badge -->
+     <rect x="0" y="0" width="160" height="22" fill="#0077B6" rx="2"/>
+     <text x="80" y="15" class="badge-text">ZONE NON-IMPRIMANTE</text>
+-    <text x="175" y="16" class="label-head" fill="#0077B6">Hydrophile &bull; Blancs</text>
++    <text x="175" y="16" class="label-head" fill="#0077B6">Hydrophile &#8226; Blancs</text>
+ 
+     <!-- Infiltration Arrows -->
+     <line x1="160" y1="45" x2="160" y2="90" stroke="#0077B6" stroke-width="3" marker-end="url(#arrow-blue)"/>
+@@ -79,7 +79,7 @@
+     <!-- Zone Badge -->
+     <rect x="0" y="0" width="140" height="22" fill="#E32619" rx="2"/>
+     <text x="70" y="15" class="badge-text">ZONE IMPRIMANTE</text>
+-    <text x="155" y="16" class="label-head" fill="#E32619">Oléophile &bull; Encre</text>
++    <text x="155" y="16" class="label-head" fill="#E32619">Oléophile &#8226; Encre</text>
+ 
+     <!-- Inking Arrows -->
+     <line x1="160" y1="45" x2="160" y2="90" stroke="#E32619" stroke-width="3" marker-end="url(#arrow-red)"/>
+--- assets/schematic_principe_planographique.svg
++++ assets/schematic_principe_planographique.svg
+@@ -55,7 +55,7 @@
+     SUPPORT MÉTALLIQUE : FEUILLE D'ALUMINIUM ANODISÉ (Al₂O₃)
+   </text>
+   <text x="400" y="355" class="label-desc" text-anchor="middle">
+-    Épaisseur mécanique calibrée : 0,15 mm à 0,30 mm &bull; Cintrable sur cylindre porte-plaque
++    Épaisseur mécanique calibrée : 0,15 mm à 0,30 mm &#8226; Cintrable sur cylindre porte-plaque
+   </text>
+ 
+   <!-- ====================================================================== -->
+@@ -65,7 +65,7 @@
+     <!-- Header Badge -->
+     <rect x="0" y="0" width="160" height="22" fill="#0077B6" rx="2"/>
+     <text x="80" y="15" class="badge-text">ZONE NON-IMPRIMANTE</text>
+-    <text x="175" y="16" class="label-head" fill="#0077B6">Hydrophile &bull; Blancs</text>
++    <text x="175" y="16" class="label-head" fill="#0077B6">Hydrophile &#8226; Blancs</text>
+ 
+     <!-- Inking Roller Descending -->
+     <circle cx="150" cy="80" r="42" fill="#2B2D42" stroke="#0A0A0A" stroke-width="2.5"/>
+@@ -91,7 +91,7 @@
+     <!-- Header Badge -->
+     <rect x="0" y="0" width="140" height="22" fill="#E32619" rx="2"/>
+     <text x="70" y="15" class="badge-text">ZONE IMPRIMANTE</text>
+-    <text x="155" y="16" class="label-head" fill="#E32619">Oléophile &bull; Graphismes</text>
++    <text x="155" y="16" class="label-head" fill="#E32619">Oléophile &#8226; Graphismes</text>
+ 
+     <!-- Inking Roller in Direct Contact depositing ink -->
+     <circle cx="150" cy="80" r="42" fill="#0A0A0A" stroke="#0A0A0A" stroke-width="2.5"/>
+@@ -125,12 +125,12 @@
+     <!-- Warning Matrix -->
+     <rect x="24" y="38" width="320" height="26" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+     <text x="32" y="55" class="label-desc" font-weight="700" fill="#B91C1C">
+-      &bull; Déficit d'eau : Graissage immédiat des fonds blancs
++      &#8226; Déficit d'eau : Graissage immédiat des fonds blancs
+     </text>
+ 
+     <rect x="376" y="38" width="320" height="26" fill="#FEF3C7" stroke="#D97706" stroke-width="1"/>
+     <text x="384" y="55" class="label-desc" font-weight="700" fill="#92400E">
+-      &bull; Excès d'eau : Émulsion de l'encre &amp; perte de densité
++      &#8226; Excès d'eau : Émulsion de l'encre &amp; perte de densité
+     </text>
+   </g>

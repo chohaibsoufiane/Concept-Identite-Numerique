@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 900; font-size: 15px; fill: #FFFFFF; letter-spacing: 0.05em; }
+      .subtitle { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; fill: #E32619; text-anchor: end; }
+      .label-head { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+      .label-sub { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; }
+      .label-desc { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 500; font-size: 10px; fill: #333333; }
+      .badge-text { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 9px; fill: #FFFFFF; text-anchor: middle; }
+      .param-val { font-family: 'Courier New', monospace; font-weight: 700; font-size: 11px; fill: #0A0A0A; }
+    </style>
+    <pattern id="grid-pattern-sch08" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-red-sch08" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#E32619" />
+    </marker>
+    <marker id="arrow-blue-sch08" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0077B6" />
+    </marker>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="500" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="3"/>
+  <rect x="0" y="52" width="800" height="448" fill="url(#grid-pattern-sch08)" />
+
+  <!-- Top Header Bar -->
+  <rect x="0" y="0" width="800" height="52" fill="#0A0A0A"/>
+  <text x="24" y="32" class="title">SCH-08 : RÔLE DE LA RUGOSITÉ &#8226; PLAQUE LISSE VS PLAQUE GRAINÉE</text>
+  <text x="776" y="32" class="subtitle">FILM D'EAU MINIMAL (4,5 À 10 µm) &#8226; LES 3 LOIS DU MOUILLAGE</text>
+
+  <!-- Central Division Line -->
+  <line x1="400" y1="52" x2="400" y2="405" stroke="#0A0A0A" stroke-width="2" stroke-dasharray="6 4"/>
+
+  <!-- ====================================================================== -->
+  <!-- ZONE GAUCHE : PLAQUE LISSE (NON TRAITÉE) - DÉFAUT CRITIQUE             -->
+  <!-- ====================================================================== -->
+  <g transform="translate(30, 68)">
+    <!-- Zone Badge -->
+    <rect x="0" y="0" width="150" height="22" fill="#DC2626" rx="2"/>
+    <text x="75" y="15" class="badge-text">SURFACE LISSE (DÉFAUT)</text>
+    <text x="165" y="16" class="label-head" fill="#DC2626">Aluminium Brut Non Traité</text>
+
+    <!-- Callout Box -->
+    <rect x="0" y="32" width="340" height="38" fill="#FEF2F2" stroke="#DC2626" stroke-width="1"/>
+    <text x="10" y="47" class="label-desc" font-weight="700" fill="#991B1B">
+      Angle de contact &#952; &gt; 70° &#8226; Rupture spontanée du film liquide
+    </text>
+    <text x="10" y="62" class="label-desc" fill="#B91C1C">
+      Incapacité à retenir une pellicule d'eau régulière sans surdosage.
+    </text>
+
+    <!-- Inking Roller Above -->
+    <g transform="translate(40, 80)">
+      <circle cx="50" cy="30" r="26" fill="#0A0A0A" stroke="#0A0A0A" stroke-width="2"/>
+      <circle cx="50" cy="30" r="9" fill="#666666" stroke="#FFFFFF" stroke-width="1"/>
+      <text x="85" y="34" class="label-sub" fill="#0A0A0A">Rouleau Encreur</text>
+    </g>
+
+    <!-- Beading Droplets (Gouttes d'eau perlées rejetées) -->
+    <path d="M 230 135 C 230 115 255 100 255 100 C 255 100 280 115 280 135 C 280 148 268 155 255 155 C 242 155 230 148 230 135 Z" fill="#90E0EF" stroke="#0077B6" stroke-width="1.5"/>
+    <text x="255" y="170" class="label-desc" font-weight="700" fill="#0077B6" text-anchor="middle">Gouttelette perlée</text>
+    <text x="255" y="182" class="label-desc" fill="#03045E" text-anchor="middle">(Mouillage nul)</text>
+
+    <!-- Substrate Block (Plaque Lisse) -->
+    <g transform="translate(0, 195)">
+      <!-- Substrate Body -->
+      <rect x="0" y="25" width="340" height="70" fill="#E5E7EB" stroke="#0A0A0A" stroke-width="2"/>
+      <line x1="0" y1="25" x2="340" y2="25" stroke="#0A0A0A" stroke-width="3"/>
+      
+      <!-- Dry zone (Graissage risk) -->
+      <rect x="20" y="2" width="130" height="23" fill="#0A0A0A" stroke="#0A0A0A" stroke-width="1"/>
+      <text x="85" y="17" class="badge-text">DÉPÔT D'ENCRE PARASITE</text>
+      
+      <!-- Flooded water pool -->
+      <path d="M 200 12 Q 220 5 240 12 Q 270 20 300 12 L 300 25 L 200 25 Z" fill="#90E0EF" stroke="#0077B6" stroke-width="1.5"/>
+      <text x="250" y="8" class="label-desc" font-weight="700" fill="#0077B6" text-anchor="middle">Émulsion (Excès)</text>
+
+      <text x="170" y="65" class="label-head" fill="#0A0A0A" text-anchor="middle">
+        ALUMINIUM POLI SANS RUGOSITÉ (Ra &#8776; 0)
+      </text>
+    </g>
+
+    <!-- Diagnostic Summary Box -->
+    <rect x="0" y="300" width="340" height="32" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+    <text x="170" y="320" class="label-desc" font-weight="800" fill="#991B1B" text-anchor="middle">
+      &#10006; GRAISSAGE (manque d'eau) OU ÉMULSION (trop d'eau)
+    </text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- ZONE DROITE : PLAQUE GRAINÉE (CRÊTES &amp; CREUX) - OPTIMUM INDUSTRIEL     -->
+  <!-- ====================================================================== -->
+  <g transform="translate(430, 68)">
+    <!-- Zone Badge -->
+    <rect x="0" y="0" width="165" height="22" fill="#059669" rx="2"/>
+    <text x="82" y="15" class="badge-text">SURFACE GRAINÉE (OPTIMUM)</text>
+    <text x="175" y="16" class="label-head" fill="#059669">Micro-Porosité Homogène</text>
+
+    <!-- Callout Box -->
+    <rect x="0" y="32" width="340" height="38" fill="#ECFDF5" stroke="#059669" stroke-width="1"/>
+    <text x="10" y="47" class="label-desc" font-weight="700" fill="#065F46">
+      Capillarité active &#8226; Film continu minimal de 4,5 à 10 µm
+    </text>
+    <text x="10" y="62" class="label-desc" fill="#047857">
+      Ménisques d'eau piégés entre crêtes (Rp) et creux (Rv).
+    </text>
+
+    <!-- Film Thickness Indicator -->
+    <g transform="translate(20, 85)">
+      <line x1="0" y1="15" x2="300" y2="15" stroke="#0077B6" stroke-width="1.5" stroke-dasharray="4 2"/>
+      <rect x="80" y="2" width="140" height="20" fill="#0077B6" rx="2"/>
+      <text x="150" y="16" class="badge-text">FILM D'EAU STABLE : 4,5 – 10 µm</text>
+    </g>
+
+    <!-- Substrate Block with Rough Profile -->
+    <g transform="translate(0, 195)">
+      <!-- Grained jagged profile path: Peaks (crêtes) and Valleys (creux) -->
+      <path d="M 0 25 
+               L 10 5 L 20 25 L 30 7 L 40 25 L 50 4 L 60 25 L 70 6 L 80 25 
+               L 90 5 L 100 25 L 110 8 L 120 25 L 130 5 L 140 25 L 150 6 L 160 25 
+               L 170 4 L 180 25 L 190 7 L 200 25 L 210 5 L 220 25 L 230 6 L 240 25 
+               L 250 4 L 260 25 L 270 7 L 280 25 L 290 5 L 300 25 L 310 6 L 320 25 
+               L 330 5 L 340 25 
+               L 340 95 L 0 95 Z" 
+            fill="#E5E7EB" stroke="#0A0A0A" stroke-width="2"/>
+
+      <!-- Uniform Water Film filling the valleys -->
+      <path d="M 0 20 
+               Q 10 16 20 20 Q 30 17 40 20 Q 50 16 60 20 Q 70 17 80 20 
+               Q 90 16 100 20 Q 110 17 120 20 Q 130 16 140 20 Q 150 17 160 20 
+               Q 170 16 180 20 Q 190 17 200 20 Q 210 16 220 20 Q 230 17 240 20 
+               Q 250 16 260 20 Q 270 17 280 20 Q 290 16 300 20 Q 310 17 320 20 
+               Q 330 16 340 20 
+               L 340 25 L 0 25 Z" 
+            fill="#90E0EF" opacity="0.85"/>
+
+      <!-- Dimension markers for Crêtes (Rp) and Creux (Rv) -->
+      <line x1="45" y1="4" x2="45" y2="25" stroke="#E32619" stroke-width="1.5"/>
+      <circle cx="50" cy="4" r="3" fill="#E32619"/>
+      <text x="58" y="10" class="param-val" fill="#E32619">Crête (Rp)</text>
+
+      <line x1="140" y1="25" x2="140" y2="40" stroke="#0077B6" stroke-width="1.5"/>
+      <circle cx="140" cy="25" r="3" fill="#0077B6"/>
+      <text x="148" y="38" class="param-val" fill="#0077B6">Creux (Rv)</text>
+
+      <text x="170" y="70" class="label-head" fill="#0A0A0A" text-anchor="middle">
+        ALUMINIUM GRAINÉ ANODISÉ (Ra CALIBRÉ)
+      </text>
+    </g>
+
+    <!-- Diagnostic Summary Box -->
+    <rect x="0" y="300" width="340" height="32" fill="#D1FAE5" stroke="#059669" stroke-width="1"/>
+    <text x="170" y="320" class="label-desc" font-weight="800" fill="#065F46" text-anchor="middle">
+      &#10004; REFUS TOTAL DE L'ENCRE AVEC LE MINIMUM D'EAU
+    </text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- BANDEAU INFÉRIEUR : LES 3 LOIS FONDAMENTALES DE LA RUGOSITÉ            -->
+  <!-- ====================================================================== -->
+  <g transform="translate(30, 415)">
+    <rect x="0" y="0" width="740" height="68" fill="#F4F5F6" stroke="#0A0A0A" stroke-width="2"/>
+    
+    <!-- Header Badge -->
+    <rect x="15" y="10" width="180" height="18" fill="#0A0A0A"/>
+    <text x="105" y="23" class="badge-text">LES 3 LOIS DE LA RUGOSITÉ</text>
+
+    <!-- Law 1 -->
+    <g transform="translate(15, 36)">
+      <text x="0" y="11" class="label-sub" fill="#E32619">LOI 1 :</text>
+      <text x="45" y="11" class="label-desc">
+        Plus l'irrégularité crêtes/creux est homogène, plus l'affinité hydrophile est forte.
+      </text>
+    </g>
+
+    <!-- Law 2 -->
+    <g transform="translate(260, 36)">
+      <text x="0" y="11" class="label-sub" fill="#E32619">LOI 2 :</text>
+      <text x="45" y="11" class="label-desc">
+        Une rugosité accentuée réduit le volume d'eau nécessaire pour repousser l'encre.
+      </text>
+    </g>
+
+    <!-- Law 3 -->
+    <g transform="translate(515, 36)">
+      <text x="0" y="11" class="label-sub" fill="#E32619">LOI 3 :</text>
+      <text x="45" y="11" class="label-desc">
+        Limite physique : la plaque ne peut retenir plus d'eau que ses micro-cavités.
+      </text>
+    </g>
+  </g>
+
+  <!-- Corner Press Registration Target Marks -->
+  <g transform="translate(20, 72)">
+    <circle cx="0" cy="0" r="9" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
+    <line x1="0" y1="-12" x2="0" y2="12" stroke="#0A0A0A" stroke-width="1.2"/>
+    <line x1="-12" y1="0" x2="12" y2="0" stroke="#0A0A0A" stroke-width="1.2"/>
+  </g>
+  <g transform="translate(780, 72)">
+    <circle cx="0" cy="0" r="9" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
+    <line x1="0" y1="-12" x2="0" y2="12" stroke="#0A0A0A" stroke-width="1.2"/>
+    <line x1="-12" y1="0" x2="12" y2="0" stroke="#0A0A0A" stroke-width="1.2"/>
+  </g>
+</svg>

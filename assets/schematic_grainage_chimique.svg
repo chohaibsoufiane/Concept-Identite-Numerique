@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 900; font-size: 15px; fill: #FFFFFF; letter-spacing: 0.05em; }
+      .subtitle { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; fill: #E32619; text-anchor: end; }
+      .label-head { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+      .label-sub { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; }
+      .label-desc { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 500; font-size: 10px; fill: #333333; }
+      .badge-text { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 9px; fill: #FFFFFF; text-anchor: middle; }
+      .param-val { font-family: 'Courier New', monospace; font-weight: 700; font-size: 11px; fill: #0A0A0A; }
+    </style>
+    <pattern id="grid-pattern-sch10" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-red-sch10" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#E32619" />
+    </marker>
+    <marker id="arrow-dark-sch10" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0A0A0A" />
+    </marker>
+    <marker id="arrow-blue-sch10" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0077B6" />
+    </marker>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="500" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="3"/>
+  <rect x="0" y="52" width="800" height="448" fill="url(#grid-pattern-sch10)" />
+
+  <!-- Top Header Bar -->
+  <rect x="0" y="0" width="800" height="52" fill="#0A0A0A"/>
+  <text x="24" y="32" class="title">SCH-10 : GRAINAGE CHIMIQUE À BROSSE (BARBOTINE ACIDE)</text>
+  <text x="776" y="32" class="subtitle">BROSSES NYLON + POUDRE DE PONCE/QUARTZ &#8226; TIRAGES MOYENS</text>
+
+  <!-- ====================================================================== -->
+  <!-- ZONE GAUCHE : ENCEINTE INDUSTRIELLE DE TRAITEMENT                      -->
+  <!-- ====================================================================== -->
+  <g transform="translate(30, 68)">
+    <rect x="0" y="0" width="370" height="335" fill="#F8FAFC" stroke="#0A0A0A" stroke-width="1.5"/>
+
+    <!-- Section Badge -->
+    <rect x="15" y="10" width="190" height="18" fill="#0A0A0A" rx="2"/>
+    <text x="110" y="22" class="badge-text">ENCEINTE MÉCANO-CHIMIQUE</text>
+
+    <!-- Spray Manifold (Rampe d'aspersion barbotine) -->
+    <g transform="translate(30, 45)">
+      <rect x="0" y="0" width="310" height="18" fill="#E2E8F0" stroke="#0A0A0A" stroke-width="1.5"/>
+      <text x="155" y="13" class="label-desc" font-weight="700" fill="#0A0A0A" text-anchor="middle">
+        Rampe d'Aspersion de Barbotine Acide
+      </text>
+
+      <!-- Spray Nozzles -->
+      <polygon points="40,18 35,26 45,26" fill="#0A0A0A"/>
+      <polygon points="110,18 105,26 115,26" fill="#0A0A0A"/>
+      <polygon points="180,18 175,26 185,26" fill="#0A0A0A"/>
+      <polygon points="250,18 245,26 255,26" fill="#0A0A0A"/>
+
+      <!-- Liquid Droplets & Abrasive Grain Slurry -->
+      <g stroke="#E32619" stroke-width="1" stroke-dasharray="2 3">
+        <line x1="40" y1="28" x2="35" y2="60"/>
+        <line x1="40" y1="28" x2="45" y2="60"/>
+        <line x1="110" y1="28" x2="105" y2="60"/>
+        <line x1="110" y1="28" x2="115" y2="60"/>
+        <line x1="180" y1="28" x2="175" y2="60"/>
+        <line x1="180" y1="28" x2="185" y2="60"/>
+        <line x1="250" y1="28" x2="245" y2="60"/>
+        <line x1="250" y1="28" x2="255" y2="60"/>
+      </g>
+    </g>
+
+    <!-- Dual Cylindrical Nylon Brushes -->
+    <g transform="translate(100, 140)">
+      <!-- Brush 1 -->
+      <circle cx="0" cy="0" r="32" fill="#FEF3C7" stroke="#0A0A0A" stroke-width="1.5"/>
+      <circle cx="0" cy="0" r="12" fill="#D97706"/>
+      <text x="0" y="4" class="badge-text">NYLON</text>
+      <!-- Rotation 1 -->
+      <path d="M 22 -22 A 30 30 0 0 1 30 10" fill="none" stroke="#0A0A0A" stroke-width="2" marker-end="url(#arrow-dark-sch10)"/>
+
+      <!-- Brush 2 -->
+      <circle cx="170" cy="0" r="32" fill="#FEF3C7" stroke="#0A0A0A" stroke-width="1.5"/>
+      <circle cx="170" cy="0" r="12" fill="#D97706"/>
+      <text x="170" y="4" class="badge-text">NYLON</text>
+      <!-- Rotation 2 -->
+      <path d="M 192 -22 A 30 30 0 0 1 200 10" fill="none" stroke="#0A0A0A" stroke-width="2" marker-end="url(#arrow-dark-sch10)"/>
+    </g>
+
+    <!-- Advancing Aluminum Sheet -->
+    <rect x="20" y="190" width="330" height="20" fill="#CBD5E1" stroke="#0A0A0A" stroke-width="2"/>
+    <text x="25" y="204" class="label-sub" fill="#0A0A0A">Bande d'Aluminium</text>
+    <line x1="240" y1="200" x2="330" y2="200" stroke="#E32619" stroke-width="2.5" marker-end="url(#arrow-red-sch10)"/>
+
+    <!-- Chemistry Callout Box -->
+    <g transform="translate(20, 225)">
+      <rect x="0" y="0" width="330" height="95" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+      <text x="12" y="18" class="label-head" fill="#E32619">Composition de la Barbotine :</text>
+      <text x="12" y="35" class="label-desc">&#8226; <tspan font-weight="700">Abrasif Minéral :</tspan> Poudre de ponce fine (SiO₂) ou quartz broyé.</text>
+      <text x="12" y="52" class="label-desc">&#8226; <tspan font-weight="700">Phase Liquide :</tspan> Solution aqueuse acide diluée (HCl ou HNO₃).</text>
+      <text x="12" y="69" class="label-desc">&#8226; <tspan font-weight="700">Brosses :</tspan> Poils souples en nylon entraînant les grains abrasifs.</text>
+      <text x="12" y="86" class="label-desc">&#8226; <tspan font-weight="700">Rinçage :</tspan> Lavage immédiat à l'eau claire sous haute pression.</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- ZONE DROITE : MÉCANISME MICROSCOPIQUE &amp; MATRICE AVANTAGES/LIMITES       -->
+  <!-- ====================================================================== -->
+  <g transform="translate(420, 68)">
+    <rect x="0" y="0" width="350" height="335" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+
+    <!-- Section Badge -->
+    <rect x="15" y="10" width="180" height="18" fill="#E32619" rx="2"/>
+    <text x="105" y="22" class="badge-text">ACTION MICROSCOPIQUE</text>
+
+    <!-- Microscopic Interaction Diagram -->
+    <g transform="translate(15, 38)">
+      <rect x="0" y="0" width="320" height="95" fill="#F1F5F9" stroke="#0A0A0A" stroke-width="1"/>
+      
+      <!-- Jagged Porous Metal Profile -->
+      <path d="M 10 65 
+               Q 25 35 40 65 Q 55 45 70 70 Q 90 30 110 65 Q 130 50 150 75 
+               Q 175 35 200 65 Q 220 40 240 70 Q 260 30 280 65 Q 295 50 310 65 
+               L 310 90 L 10 90 Z" 
+            fill="#CBD5E1" stroke="#0A0A0A" stroke-width="1.5"/>
+
+      <!-- Pumice Grain Particles (Brown Diamonds) -->
+      <polygon points="55,38 60,33 65,40 58,45" fill="#B45309" stroke="#0A0A0A" stroke-width="0.8"/>
+      <polygon points="125,25 132,20 138,28 130,33" fill="#B45309" stroke="#0A0A0A" stroke-width="0.8"/>
+      <polygon points="215,30 222,25 228,34 220,38" fill="#B45309" stroke="#0A0A0A" stroke-width="0.8"/>
+      
+      <!-- Nylon Bristles Pressing Down -->
+      <line x1="60" y1="5" x2="60" y2="33" stroke="#D97706" stroke-width="2.5"/>
+      <line x1="132" y1="5" x2="132" y2="20" stroke="#D97706" stroke-width="2.5"/>
+      <line x1="222" y1="5" x2="222" y2="25" stroke="#D97706" stroke-width="2.5"/>
+
+      <!-- Annotations -->
+      <text x="15" y="16" class="param-val" fill="#D97706">Brosses Nylon</text>
+      <text x="240" y="16" class="param-val" fill="#B45309">Grains Ponce</text>
+      <text x="160" y="85" class="label-desc" font-weight="700" fill="#0A0A0A" text-anchor="middle">
+        Anfractuosités d'accroche mécano-chimiques profondes
+      </text>
+    </g>
+
+    <!-- Tradeoffs Comparison Matrix -->
+    <g transform="translate(15, 145)">
+      <!-- Advantages Box -->
+      <rect x="0" y="0" width="320" height="85" fill="#ECFDF5" stroke="#059669" stroke-width="1"/>
+      <text x="10" y="16" class="label-head" fill="#065F46">&#10004; AVANTAGES MAJEURS :</text>
+      <text x="10" y="32" class="label-desc">&#8226; <tspan font-weight="700">Excellente adhérence</tspan> de la couche photosensible diazoïque.</text>
+      <text x="10" y="48" class="label-desc">&#8226; <tspan font-weight="700">Bonne mouillabilité</tspan> réduisant la quantité d'eau requise.</text>
+      <text x="10" y="64" class="label-desc">&#8226; <tspan font-weight="700">Équilibre eau/encre rapide</tspan> et stabilité de calage en machine.</text>
+      <text x="10" y="80" class="label-desc">&#8226; Très bonne fidélité de reproduction des finesses de trame.</text>
+
+      <!-- Drawbacks Box -->
+      <g transform="translate(0, 95)">
+        <rect x="0" y="0" width="320" height="85" fill="#FEF2F2" stroke="#DC2626" stroke-width="1"/>
+        <text x="10" y="16" class="label-head" fill="#991B1B">&#10006; INCONVÉNIENTS &amp; LIMITES :</text>
+        <text x="10" y="32" class="label-desc">&#8226; <tspan font-weight="700">Attaque acide hétérogène :</tspan> micro-irrégularités locales de rugosité.</text>
+        <text x="10" y="48" class="label-desc">&#8226; <tspan font-weight="700">Affaiblissement métallique :</tspan> perte de dureté superficielle de l'Alu.</text>
+        <text x="10" y="64" class="label-desc">&#8226; <tspan font-weight="700">Rétention de résine :</tspan> développement incomplet dans les creux.</text>
+        <text x="10" y="80" class="label-desc">&#8226; <tspan font-weight="700">Tirages moyens uniquement :</tspan> inférieur à l'électrograinage.</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- BANDEAU INFÉRIEUR : POSITIONNEMENT TECHNIQUE DANS L'INDUSTRIE           -->
+  <!-- ====================================================================== -->
+  <g transform="translate(30, 418)">
+    <rect x="0" y="0" width="740" height="66" fill="#F4F5F6" stroke="#0A0A0A" stroke-width="2"/>
+    
+    <g transform="translate(20, 14)">
+      <text x="0" y="14" class="label-sub" fill="#E32619">POSITIONNEMENT INDUSTRIEL :</text>
+      <text x="195" y="14" class="param-val">Tirages Moyens (100 000 – 300 000 ex)</text>
+      <text x="0" y="34" class="label-desc">
+        Procédé économique intermédiaire supplanté pour les très longs tirages par l'électrograinage en bain acide continu.
+      </text>
+    </g>
+  </g>
+
+  <!-- Corner Press Registration Target Marks -->
+  <g transform="translate(20, 72)">
+    <circle cx="0" cy="0" r="9" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
+    <line x1="0" y1="-12" x2="0" y2="12" stroke="#0A0A0A" stroke-width="1.2"/>
+    <line x1="-12" y1="0" x2="12" y2="0" stroke="#0A0A0A" stroke-width="1.2"/>
+  </g>
+  <g transform="translate(780, 72)">
+    <circle cx="0" cy="0" r="9" fill="none" stroke="#0A0A0A" stroke-width="1.2"/>
+    <line x1="0" y1="-12" x2="0" y2="12" stroke="#0A0A0A" stroke-width="1.2"/>
+    <line x1="-12" y1="0" x2="12" y2="0" stroke="#0A0A0A" stroke-width="1.2"/>
+  </g>
+</svg>

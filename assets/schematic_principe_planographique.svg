@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 900; font-size: 16px; fill: #FFFFFF; letter-spacing: 0.05em; }
+      .subtitle { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 12px; fill: #E32619; text-anchor: end; }
+      .label-head { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 13px; text-transform: uppercase; }
+      .label-sub { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; }
+      .label-desc { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 500; font-size: 11px; fill: #444444; }
+      .datum { font-family: 'Courier New', monospace; font-weight: 700; font-size: 12px; fill: #E32619; }
+      .badge-text { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 10px; fill: #FFFFFF; text-anchor: middle; }
+    </style>
+    <!-- Geometric Target Grid -->
+    <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-down-red" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#E32619" />
+    </marker>
+    <marker id="arrow-up-red" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#E32619" />
+    </marker>
+    <marker id="arrow-down-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0077B6" />
+    </marker>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="500" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="3"/>
+  <rect x="0" y="52" width="800" height="448" fill="url(#grid-pattern)" />
+
+  <!-- Top Header Bar -->
+  <rect x="0" y="0" width="800" height="52" fill="#0A0A0A"/>
+  <text x="24" y="32" class="title">SCH-03 : PRINCIPE PLANOGRAPHIQUE &amp; ANTAGONISME EAU / ENCRE</text>
+  <text x="776" y="32" class="subtitle">SURFACE RIGOUREUSEMENT PLANE (z = 0)</text>
+
+  <!-- ====================================================================== -->
+  <!-- NIVEAU DE RÉFÉRENCE z = 0 (PLANÉITÉ ABSOLUE)                           -->
+  <!-- ====================================================================== -->
+  <!-- Horizontal Datum Line -->
+  <line x1="30" y1="280" x2="770" y2="280" stroke="#E32619" stroke-width="2" stroke-dasharray="8 4"/>
+  <rect x="330" y="268" width="140" height="24" fill="#E32619" rx="2"/>
+  <text x="400" y="284" class="badge-text" font-size="11px">PLANÉITÉ z = 0 (AUCUN RELIEF)</text>
+
+  <!-- Base Plate Substrate (Aluminium Grainé & Anodisé) -->
+  <rect x="40" y="282" width="720" height="90" fill="#E5E7EB" stroke="#0A0A0A" stroke-width="2.5"/>
+  <!-- Metallic Diagonal Hatch Lines -->
+  <line x1="50" y1="372" x2="140" y2="282" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="150" y1="372" x2="240" y2="282" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="250" y1="372" x2="340" y2="282" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="350" y1="372" x2="440" y2="282" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="450" y1="372" x2="540" y2="282" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="550" y1="372" x2="640" y2="282" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="650" y1="372" x2="740" y2="282" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="400" y="335" class="label-head" fill="#0A0A0A" text-anchor="middle" font-size="14px">
+    SUPPORT MÉTALLIQUE : FEUILLE D'ALUMINIUM ANODISÉ (Al₂O₃)
+  </text>
+  <text x="400" y="355" class="label-desc" text-anchor="middle">
+    Épaisseur mécanique calibrée : 0,15 mm à 0,30 mm &#8226; Cintrable sur cylindre porte-plaque
+  </text>
+
+  <!-- ====================================================================== -->
+  <!-- ZONE GAUCHE : NON-IMPRIMANTE (HYDROPHILE & LIPOPHOBE)                  -->
+  <!-- ====================================================================== -->
+  <g transform="translate(60, 70)">
+    <!-- Header Badge -->
+    <rect x="0" y="0" width="160" height="22" fill="#0077B6" rx="2"/>
+    <text x="80" y="15" class="badge-text">ZONE NON-IMPRIMANTE</text>
+    <text x="175" y="16" class="label-head" fill="#0077B6">Hydrophile &#8226; Blancs</text>
+
+    <!-- Inking Roller Descending -->
+    <circle cx="150" cy="80" r="42" fill="#2B2D42" stroke="#0A0A0A" stroke-width="2.5"/>
+    <circle cx="150" cy="80" r="14" fill="#8D99AE" stroke="#0A0A0A" stroke-width="1.5"/>
+    <text x="150" y="45" class="label-sub" fill="#0A0A0A" text-anchor="middle">Rouleau Toucheur Encreur</text>
+
+    <!-- Repulsion Forces (Water acts as barrier) -->
+    <path d="M 125 145 Q 125 180 110 180" fill="none" stroke="#E32619" stroke-width="3" marker-end="url(#arrow-up-red)"/>
+    <path d="M 175 145 Q 175 180 190 180" fill="none" stroke="#E32619" stroke-width="3" marker-end="url(#arrow-up-red)"/>
+    <text x="150" y="170" class="label-sub" fill="#E32619" text-anchor="middle">RÉPULSION DE L'ENCRE</text>
+
+    <!-- Water Film on Plate Surface -->
+    <rect x="0" y="195" width="300" height="15" fill="#90E0EF" stroke="#0077B6" stroke-width="1.5"/>
+    <text x="150" y="206" class="label-desc" text-anchor="middle" font-weight="700" fill="#03045E">
+      Film d'Eau de Mouillage (4,5 à 10 µm)
+    </text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- ZONE DROITE : IMPRIMANTE (OLÉOPHILE & HYDROPHOBE)                      -->
+  <!-- ====================================================================== -->
+  <g transform="translate(440, 70)">
+    <!-- Header Badge -->
+    <rect x="0" y="0" width="140" height="22" fill="#E32619" rx="2"/>
+    <text x="70" y="15" class="badge-text">ZONE IMPRIMANTE</text>
+    <text x="155" y="16" class="label-head" fill="#E32619">Oléophile &#8226; Graphismes</text>
+
+    <!-- Inking Roller in Direct Contact depositing ink -->
+    <circle cx="150" cy="80" r="42" fill="#0A0A0A" stroke="#0A0A0A" stroke-width="2.5"/>
+    <circle cx="150" cy="80" r="14" fill="#4A4E69" stroke="#FFFFFF" stroke-width="1.5"/>
+    <text x="150" y="45" class="label-sub" fill="#0A0A0A" text-anchor="middle">Dépôt d'Encre Grasse</text>
+
+    <!-- Adhesion Contact Arrows -->
+    <line x1="150" y1="130" x2="150" y2="185" stroke="#0A0A0A" stroke-width="3" marker-end="url(#arrow-down-red)"/>
+    <text x="150" y="160" class="label-sub" fill="#0A0A0A" text-anchor="middle">ADHÉSION LIPHILE</text>
+
+    <!-- Greasy Ink Layer on Plate Surface -->
+    <rect x="0" y="195" width="300" height="15" fill="#0A0A0A" stroke="#0A0A0A" stroke-width="1.5"/>
+    <text x="150" y="206" class="label-desc" text-anchor="middle" font-weight="700" fill="#FFFFFF">
+      Couche Diazo / Photopolymère Encrée
+    </text>
+
+    <!-- Repelled Water Droplet (Rolling Off) -->
+    <path d="M 270 170 C 270 160 282 148 282 148 C 282 148 294 160 294 170 C 294 178 288 184 282 184 C 276 184 270 178 270 170 Z" fill="#90E0EF" stroke="#0077B6" stroke-width="1.5"/>
+    <text x="282" y="142" class="label-desc" text-anchor="middle" font-weight="700" fill="#0077B6">Eau rejetée</text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- BANDEAU INFÉRIEUR : ÉQUILIBRE INDUSTRIEL EAU / ENCRE                   -->
+  <!-- ====================================================================== -->
+  <g transform="translate(40, 395)">
+    <rect x="0" y="0" width="720" height="75" fill="#F4F5F6" stroke="#0A0A0A" stroke-width="2"/>
+    
+    <text x="24" y="26" class="label-head" fill="#0A0A0A">ÉQUILIBRE INDUSTRIEL EAU / ENCRE :</text>
+    <text x="320" y="26" class="datum">« Le minimum d'eau pour refuser l'encre »</text>
+
+    <!-- Warning Matrix -->
+    <rect x="24" y="38" width="320" height="26" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+    <text x="32" y="55" class="label-desc" font-weight="700" fill="#B91C1C">
+      &#8226; Déficit d'eau : Graissage immédiat des fonds blancs
+    </text>
+
+    <rect x="376" y="38" width="320" height="26" fill="#FEF3C7" stroke="#D97706" stroke-width="1"/>
+    <text x="384" y="55" class="label-desc" font-weight="700" fill="#92400E">
+      &#8226; Excès d'eau : Émulsion de l'encre &amp; perte de densité
+    </text>
+  </g>
+
+  <!-- Corner Press Registration Target Marks -->
+  <g transform="translate(24, 76)">
+    <circle cx="0" cy="0" r="10" fill="none" stroke="#0A0A0A" stroke-width="1.5"/>
+    <line x1="0" y1="-14" x2="0" y2="14" stroke="#0A0A0A" stroke-width="1.5"/>
+    <line x1="-14" y1="0" x2="14" y2="0" stroke="#0A0A0A" stroke-width="1.5"/>
+  </g>
+  <g transform="translate(776, 76)">
+    <circle cx="0" cy="0" r="10" fill="none" stroke="#0A0A0A" stroke-width="1.5"/>
+    <line x1="0" y1="-14" x2="0" y2="14" stroke="#0A0A0A" stroke-width="1.5"/>
+    <line x1="-14" y1="0" x2="14" y2="0" stroke="#0A0A0A" stroke-width="1.5"/>
+  </g>
+</svg>

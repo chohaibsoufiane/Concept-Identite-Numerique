@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 900; font-size: 15px; fill: #FFFFFF; letter-spacing: 0.05em; }
+      .subtitle { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; fill: #E32619; text-anchor: end; }
+      .label-head { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+      .label-sub { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; }
+      .label-desc { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 500; font-size: 10px; fill: #333333; }
+      .badge-text { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 9px; fill: #FFFFFF; text-anchor: middle; }
+      .param-val { font-family: 'Courier New', monospace; font-weight: 700; font-size: 11px; fill: #0A0A0A; }
+    </style>
+    <pattern id="grid-chr" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="3"/>
+  <rect x="0" y="52" width="800" height="448" fill="url(#grid-chr)" />
+
+  <rect x="0" y="0" width="800" height="52" fill="#0A0A0A"/>
+  <text x="24" y="32" class="title">SCH-13 : PLAQUES LITHO CHROMÉES (APPLICATION EMBALLAGE)</text>
+  <text x="776" y="32" class="subtitle">2x MOINS D'EAU DE MOUILLAGE &#8226; SUPPORTS RIGIDES &amp; FER-BLANC</text>
+
+  <!-- Left: Multi-layer Structure on Tinplate / Metal -->
+  <g transform="translate(30, 75)">
+    <rect x="0" y="0" width="370" height="320" fill="#F8FAFC" stroke="#0A0A0A" stroke-width="1.5"/>
+    <rect x="15" y="10" width="220" height="20" fill="#0A0A0A"/>
+    <text x="125" y="24" class="badge-text">STRUCTURE MULTI-MÉTAUX RIGIDE</text>
+
+    <!-- Base steel / tinplate -->
+    <rect x="30" y="220" width="310" height="60" fill="#475569" stroke="#0A0A0A" stroke-width="2"/>
+    <text x="185" y="255" class="label-sub" fill="#FFFFFF" text-anchor="middle">Support Acier / Fer-blanc Rigide (Emballage Métal)</text>
+
+    <!-- Intermediate Copper -->
+    <rect x="30" y="160" width="310" height="60" fill="#D97706" stroke="#0A0A0A" stroke-width="2"/>
+    <text x="185" y="195" class="label-sub" fill="#FFFFFF" text-anchor="middle">Sous-couche Cuivre Oléophile (Encre)</text>
+
+    <!-- Chrome Top Layer -->
+    <rect x="30" y="100" width="140" height="60" fill="#0284C7" stroke="#0A0A0A" stroke-width="2"/>
+    <text x="100" y="135" class="label-sub" fill="#FFFFFF" text-anchor="middle">Chrome Hydrophile</text>
+
+    <!-- Open image area -->
+    <rect x="170" y="100" width="170" height="60" fill="none" stroke="#E32619" stroke-width="2" stroke-dasharray="4,4"/>
+    <text x="255" y="135" class="label-sub" fill="#E32619" text-anchor="middle">Zone Cuivre Gravée</text>
+  </g>
+
+  <!-- Right: Water Consumption Comparison -->
+  <g transform="translate(420, 75)">
+    <rect x="0" y="0" width="350" height="320" fill="#F8FAFC" stroke="#0A0A0A" stroke-width="1.5"/>
+    <rect x="15" y="10" width="220" height="20" fill="#0A0A0A"/>
+    <text x="125" y="24" class="badge-text">CONSOMMATION COMPARATIVE D'EAU</text>
+
+    <!-- Conventional Aluminium -->
+    <rect x="30" y="60" width="290" height="90" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+    <text x="45" y="85" class="label-head">Aluminium Conventionnel</text>
+    <rect x="45" y="100" width="240" height="24" fill="#38BDF8"/>
+    <text x="165" y="117" class="badge-text" fill="#0A0A0A">Volume d'eau de mouillage standard (100%)</text>
+
+    <!-- Chromed Plate -->
+    <rect x="30" y="170" width="290" height="110" fill="#FFFFFF" stroke="#E32619" stroke-width="2"/>
+    <text x="45" y="195" class="label-head" fill="#E32619">Plaque Litho Chromée</text>
+    <rect x="45" y="210" width="120" height="24" fill="#0284C7"/>
+    <text x="105" y="227" class="badge-text">2x Moins d'Eau (50%)</text>
+    <text x="45" y="260" class="label-desc" font-weight="700" fill="#E32619">Rétention superficielle exceptionnelle du chrome sans excès d'eau.</text>
+  </g>
+
+  <!-- Bottom Metric -->
+  <g transform="translate(30, 415)">
+    <rect x="0" y="0" width="740" height="65" fill="#0A0A0A"/>
+    <text x="25" y="26" class="title" fill="#FFFFFF" font-size="12px">APPLICATIONS INDUSTRIELLES LOURDES</text>
+    <text x="25" y="48" class="label-desc" fill="#D1D5DB">Impression directe sur métaux, boîtes de conserve, capsules et conditionnements rigides sous fortes pressions.</text>
+  </g>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 900; font-size: 15px; fill: #FFFFFF; letter-spacing: 0.05em; }
+      .subtitle { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; fill: #E32619; text-anchor: end; }
+      .label-head { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+      .label-sub { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; }
+      .label-desc { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 500; font-size: 10px; fill: #333333; }
+      .badge-text { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 9px; fill: #FFFFFF; text-anchor: middle; }
+      .param-val { font-family: 'Courier New', monospace; font-weight: 700; font-size: 11px; fill: #0A0A0A; }
+    </style>
+    <pattern id="grid-diazo" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="3"/>
+  <rect x="0" y="52" width="800" height="448" fill="url(#grid-diazo)" />
+
+  <rect x="0" y="0" width="800" height="52" fill="#0A0A0A"/>
+  <text x="24" y="32" class="title">SCH-14 : COUCHE DIAZOÏQUE &amp; PROCÉDÉ POSITIF</text>
+  <text x="776" y="32" class="subtitle">DÉCOMPOSITION DU SEL DE DIAZONIUM (N2) &#8226; SOLUBILISATION ALCALINE</text>
+
+  <!-- Left: Photo-reaction UV -->
+  <g transform="translate(30, 75)">
+    <rect x="0" y="0" width="370" height="320" fill="#F8FAFC" stroke="#0A0A0A" stroke-width="1.5"/>
+    <rect x="15" y="10" width="220" height="20" fill="#0A0A0A"/>
+    <text x="125" y="24" class="badge-text">RÉACTION PHOTOCHIMIQUE UV</text>
+
+    <!-- Diazonium molecule decomposition box -->
+    <rect x="25" y="50" width="320" height="130" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+    <text x="40" y="75" class="label-head" fill="#E32619">Sel de Diazonium (R-N2+ X-)</text>
+    <text x="40" y="98" class="label-desc">Exposition aux photons ultraviolets (&lambda; = 360 - 420 nm) :</text>
+    <rect x="40" y="110" width="290" height="30" fill="#FEE2E2" stroke="#E32619" stroke-width="1"/>
+    <text x="50" y="130" class="param-val" fill="#E32619">R-N2+ + h&nu; &#8594; R-OH + N2 &uarr; (Dégagement d'Azote)</text>
+    <text x="40" y="160" class="label-desc">L'acide carboxylique formé devient soluble dans le révélateur basique.</text>
+
+    <!-- Development step -->
+    <rect x="25" y="200" width="320" height="100" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+    <text x="40" y="225" class="label-head">Attaque par le Révélateur Alcalin</text>
+    <text x="40" y="248" class="label-desc">&bull; Zones Insolées : Solubilisées et éliminées par la soude/silicate.</text>
+    <text x="40" y="268" class="label-desc">&bull; Zones Non-Insolées : Restent insolubles et forment le graphisme oléophile.</text>
+  </g>
+
+  <!-- Right: Positive Flow Step-by-Step -->
+  <g transform="translate(420, 75)">
+    <rect x="0" y="0" width="350" height="320" fill="#F8FAFC" stroke="#0A0A0A" stroke-width="1.5"/>
+    <rect x="15" y="10" width="220" height="20" fill="#0A0A0A"/>
+    <text x="125" y="24" class="badge-text">CINÉTIQUE DU PROCÉDÉ POSITIF</text>
+
+    <!-- Step 1 Film Positif -->
+    <g transform="translate(25, 45)">
+      <rect x="0" y="0" width="300" height="40" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1"/>
+      <text x="15" y="24" class="param-val">1. Film Positif : Textes noirs opaques</text>
+    </g>
+
+    <!-- Step 2 Insolation UV -->
+    <g transform="translate(25, 100)">
+      <rect x="0" y="0" width="300" height="40" fill="#FEF3C7" stroke="#D97706" stroke-width="1"/>
+      <text x="15" y="24" class="param-val" fill="#B45309">2. Insolation UV : Décomposition des fonds</text>
+    </g>
+
+    <!-- Step 3 Révélateur -->
+    <g transform="translate(25, 155)">
+      <rect x="0" y="0" width="300" height="40" fill="#E0F2FE" stroke="#0284C7" stroke-width="1"/>
+      <text x="15" y="24" class="param-val" fill="#0369A1">3. Révélateur : Dissolution zones claires</text>
+    </g>
+
+    <!-- Step 4 Résultat final -->
+    <g transform="translate(25, 210)">
+      <rect x="0" y="0" width="300" height="50" fill="#FEE2E2" stroke="#E32619" stroke-width="2"/>
+      <text x="15" y="24" class="param-val" fill="#E32619">4. Résultat : Plaque Positif Imprimante</text>
+      <text x="15" y="40" class="label-desc">Aluminium hydrophile mis à nu + Graphisme diazo conservé</text>
+    </g>
+  </g>
+
+  <!-- Bottom Banner -->
+  <g transform="translate(30, 415)">
+    <rect x="0" y="0" width="740" height="65" fill="#0A0A0A"/>
+    <text x="25" y="26" class="title" fill="#FFFFFF" font-size="12px">UTILISATION PRÉDOMINANTE : 80% DU MARCHÉ LABEUR</text>
+    <text x="25" y="48" class="label-desc" fill="#D1D5DB">Fidélité géométrique maximale du point de trame &bull; Aucune diffusion parasite sous le film &bull; Contrôle visuel direct sur table lumineuse.</text>
+  </g>
+</svg>

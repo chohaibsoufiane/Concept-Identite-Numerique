@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les procédés d'impression : Offset et Flexographie</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Electron Window Controls -->
+        <div class="electron-window-controls">
+            <button id="electron-min" class="electron-btn" aria-label="Minimize">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <button id="electron-max" class="electron-btn" aria-label="Maximize">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="14" height="14" rx="2" ry="2"/></svg>
+            </button>
+            <button id="electron-close" class="electron-btn" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+
+
+        <!-- Brutalist Odometer Progress -->
+        <div class="brutalist-counter" id="slideCounter">
+            <div class="counter-track" id="counterTrack">
+                <div class="counter-step">01</div><div class="counter-step">02</div>
+                <div class="counter-step">03</div><div class="counter-step">04</div>
+                <div class="counter-step">05</div><div class="counter-step">06</div>
+                <div class="counter-step">07</div><div class="counter-step">08</div>
+                <div class="counter-step">09</div><div class="counter-step">10</div>
+                <div class="counter-step">11</div><div class="counter-step">12</div>
+                <div class="counter-step">13</div><div class="counter-step">14</div>
+                <div class="counter-step">15</div>
+            </div>
+            <div class="counter-total">/ 15</div>
+        </div>
+
+        <!-- Slide 1: Cinematic Cover -->
+        <section class="slide active" id="slide-1">
+            <div class="grid grid-center bg-dark text-light overflow-visible">
+                <!-- Halftone Printing Dots -->
+                <div class="halftone-bg"></div>
+                
+                <!-- Massive Printing Cylinder -->
+                <div class="print-cylinder"></div>
+
+                <div class="content-wrapper-center z-index-10 text-center">
+                    <!-- CMYK Plate Stomper -->
+                    <div class="cmyk-press-container">
+                        <h1 class="press-title screen-cyan" aria-hidden="true">La<br>Flexographie</h1>
+                        <h1 class="press-title screen-magenta" aria-hidden="true">La<br>Flexographie</h1>
+                        <h1 class="press-title screen-yellow" aria-hidden="true">La<br>Flexographie</h1>
+                        <!-- Solid white base for final registration snap -->
+                        <h1 class="press-title screen-white">La<br>Flexographie</h1>
+                    </div>
+                    
+                    <!-- Dynamic Arrow Prompt -->
+                    <div class="start-prompt-track" onclick="document.getElementById('nextBtn').click();">
+                        <div class="start-arrow-slider">
+                            <span class="slider-text">Appuyez pour démarrer</span>
+                            <svg class="slider-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Titre -->
+        <section class="slide" id="slide-2">
+            <div class="grid grid-title">
+                <div class="slide-content">
+                    <div class="bg-motif bg-motif-top-right">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><circle cx="35" cy="50" r="30"/><circle cx="65" cy="50" r="30"/><circle cx="50" cy="20" r="30"/></svg>
+                    </div>
+                    <div class="presenter-tag">Procédé d'Impression</div>
+                    <h1 class="huge-title">La Flexographie</h1>
+                    <h2 class="subtitle">Procédé & Innovations</h2>
+                    
+                    <div class="meta-info">
+                        <div class="meta-block">
+                            <span class="meta-label">
+                                <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                Réalisé par
+                            </span>
+                            <span class="meta-value">Chohaib Soufiane, Oualid Driwch,<br>Abdllah Amhil, Bafrij Ilyass</span>
+                        </div>
+                        <div class="meta-block">
+                            <span class="meta-label">
+                                <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                Classe
+                            </span>
+                            <span class="meta-value">108</span>
+                        </div>
+                        <div class="meta-block">
+                            <span class="meta-label">
+                                <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                                Formatrice
+                            </span>
+                            <span class="meta-value">Mme Batioui</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-visual bg-dark">
+                    <img src="media/image_impression.jpg" alt="Impression Graphique" class="bg-image" onerror="this.style.opacity=0">
+                    <div class="visual-placeholder text-light">Procédé d'Impression</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Introduction -->
+        <section class="slide" id="slide-3">
+            <div class="grid grid-split-right">
+                <div class="slide-visual bg-accent">
+                    <img src="media/image_emballages.jpg" alt="Emballages Imprimés" class="bg-image" onerror="this.style.opacity=0">
+                    <div class="visual-placeholder text-light">Emballages Flexo</div>
+                </div>
+                <div class="slide-content">
+                    <div class="bg-motif bg-motif-bottom-right">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z" /><path d="M50 10 L50 50 M10 30 L50 50 M90 30 L50 50 M50 50 L50 90" /></svg>
+                    </div>
+
+                    <h2 class="slide-title">Introduction</h2>
+                    <ul class="bullet-list">
+                        <li><strong>Forme Imprimante Souple :</strong> Procédé d'impression direct en relief utilisant des clichés photopolymères ou en caoutchouc.</li>
+                        <li><strong>Dominance Industrielle :</strong> Représente environ 70% de parts de marché mondial de l'emballage.</li>
+                        <li><strong>Grande Polyvalence :</strong> S'adapte à une variété presque infinie de supports (poreux, lisses, flexibles).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Origines Historiques -->
+        <section class="slide" id="slide-4">
+            <div class="grid grid-horizontal">
+                <div class="slide-header">
+                    <div class="bg-motif bg-motif-top-right">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1"><circle cx="50" cy="50" r="40"/><circle cx="50" cy="50" r="20"/><line x1="0" y1="50" x2="100" y2="50"/><line x1="50" y1="0" x2="50" y2="100"/></svg>
+                    </div>
+                    <h2 class="slide-title">Chapitre 1 : Les Origines & l'Évolution Historique</h2>
+                </div>
+                <div class="slide-body timeline-body">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-container">
+                        <div class="timeline-step">
+                            <div class="timeline-badge">1890</div>
+                            <div class="timeline-content">
+                                <h3>Carl Holweg</h3>
+                                <p>Invention de la presse rotative à clichés en caoutchouc souple vulcanisé pour imprimer sur du papier kraft rugueux.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-badge">1890 - 1950</div>
+                            <div class="timeline-content">
+                                <h3>L'ère de l'Aniline</h3>
+                                <p>Utilisation d'encres à base d'aniline, rapides mais toxiques. Interdites par la FDA en 1949.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-badge">1952</div>
+                            <div class="timeline-content">
+                                <h3>Le Rebranding</h3>
+                                <p>Adoption du terme <em>Flexographie</em> et passage à des pigments organiques sains.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Architecture de la Presse -->
+        <section class="slide" id="slide-5">
+            <div class="grid grid-split-left">
+                <div class="slide-content bg-light">
+                    <div class="bg-motif bg-motif-bottom-left">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                    </div>
+
+                    <h2 class="slide-title">Chapitre 2 : Architecture de la Presse</h2>
+                    <ul class="bullet-list">
+                        <li><strong>Tambour Central (CI) :</strong> Idéal pour les supports fins/extensibles (films plastiques), élimine les défauts de repérage.</li>
+                        <li><strong>Presse en Ligne (Inline) :</strong> Conçue pour les supports rigides (carton ondulé) et les modules de découpe d'étiquettes.</li>
+                        <li><strong>Groupes Superposés (Stack) :</strong> Moins encombrante, idéale pour les tirages simples ou les vernis.</li>
+                    </ul>
+                </div>
+                <div class="slide-visual bg-gray">
+                    <img src="media/image_machine_flexo.jpg" alt="Presse Flexographique" class="bg-image" onerror="this.style.opacity=0">
+                    <div class="visual-placeholder text-dark">Presse Flexographique</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Le trajet de l'encre -->
+        <section class="slide" id="slide-6">
+            <div class="grid grid-focus">
+                <div class="slide-focus-visual border-all">
+                    <!-- Inline simplified SVG graphic of Flexo path -->
+                    <svg viewBox="0 0 200 200" width="80%" height="80%" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-dark);">
+                        <!-- Anilox -->
+                        <circle cx="60" cy="70" r="25" stroke-dasharray="2 2" />
+                        <text x="60" y="75" font-size="8" text-anchor="middle" font-weight="bold" fill="currentColor">Anilox</text>
+                        <!-- Plate Cylinder -->
+                        <circle cx="120" cy="70" r="25" />
+                        <text x="120" y="75" font-size="8" text-anchor="middle" font-weight="bold" fill="currentColor">Cliché</text>
+                        <!-- Impression Cylinder -->
+                        <circle cx="120" cy="130" r="20" />
+                        <text x="120" y="133" font-size="7" text-anchor="middle" font-weight="bold" fill="currentColor">Contre-Pression</text>
+                        <!-- Substrate line -->
+                        <path d="M70 120 L170 120" stroke="var(--color-accent)" stroke-width="4" />
+                        <text x="170" y="115" font-size="7" font-weight="bold" fill="var(--color-accent)">Substrat</text>
+                        <!-- Doctor Blade -->
+                        <path d="M35 50 L48 60" stroke-width="3" />
+                        <text x="25" y="45" font-size="7">Racle</text>
+                    </svg>
+                </div>
+                <div class="slide-content">
+                    <div class="bg-motif bg-motif-top-right">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    </div>
+
+                    <h2 class="slide-title">Le Trajet de l'Encre</h2>
+                    <div class="list-grid">
+                        <div class="list-item">
+                            <svg class="bullet-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="8" rx="2" ry="2"/><path d="M6 14v4a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4"/></svg>
+                            <p><strong>1. Chambre à racle :</strong> Alimentation constante en encre liquide et essuyage de l'anilox par la racle (Doctor Blade).</p>
+                        </div>
+                        <div class="list-item">
+                            <svg class="bullet-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+                            <p><strong>2. Cylindre Anilox :</strong> Céramique gravée laser d'alvéoles dosant l'encre avec précision.</p>
+                        </div>
+                        <div class="list-item">
+                            <svg class="bullet-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                            <p><strong>3. Cliché en relief :</strong> Le cliché souple capte l'encre sur ses reliefs et laisse les creux propres.</p>
+                        </div>
+                        <div class="list-item">
+                            <svg class="bullet-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21L21 3M3 3l18 18"/></svg>
+                            <p><strong>4. Kiss Impression & Séchage :</strong> Transfert sur substrat sous pression douce, suivi d'un séchage instantané.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Paramètres de l'Anilox -->
+        <section class="slide" id="slide-7">
+            <div class="grid grid-columns">
+                <div class="slide-title-wrapper" style="position: relative; overflow: hidden;">
+                    <div class="bg-motif bg-motif-bottom-left">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><line x1="20" y1="50" x2="80" y2="50"/><line x1="50" y1="20" x2="50" y2="80"/><circle cx="50" cy="50" r="40"/></svg>
+                    </div>
+                    <h2 class="slide-title">Les Variables<br>clés de<br>l'Anilox</h2>
+                </div>
+                <div class="col bg-dark text-light">
+                    <h3 class="col-title flex-title">Linéature</h3>
+                    <ul class="bullet-list">
+                        <li>Exprimée en L/cm ou LPI (Lignes par pouce).</li>
+                        <li>Définit le nombre d'alvéoles par unité de longueur.</li>
+                        <li>Une linéature élevée (800-1200 LPI) est indispensable pour les détails fins et les dégradés.</li>
+                    </ul>
+                </div>
+                <div class="col bg-accent text-light">
+                    <h3 class="col-title flex-title">Volume d'apport</h3>
+                    <ul class="bullet-list">
+                        <li>Exprimé en cm³/m² ou BCM.</li>
+                        <li>Définit la capacité volumique globale des alvéoles.</li>
+                        <li>Un mauvais étalonnage cause soit un empâtement du point (dot gain), soit des couleurs ternes.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Prépresse & Forme Imprimante -->
+        <section class="slide" id="slide-8">
+            <div class="grid grid-split-right">
+                <div class="slide-visual bg-gray">
+                    <img src="media/image_plaque_souple.jpg" alt="Cliché photopolymère" class="bg-image" onerror="this.style.opacity=0">
+                    <div class="visual-placeholder">Cliché Photopolymère</div>
+                </div>
+                <div class="slide-content bg-light">
+                    <div class="bg-motif bg-motif-bottom-right">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 12c4-8 12-8 16 0"/><path d="M4 22c4-8 12-8 16 0"/></svg>
+                    </div>
+
+                    <h2 class="slide-title">Prépresse & Chimie</h2>
+                    <ul class="bullet-list">
+                        <li><strong>Le Photopolymère :</strong> Une plaque contenant des élastomères de synthèse et des photo-initiateurs réactifs.</li>
+                        <li><strong>Insolation UV-A (350-380 nm) :</strong> Déclenche une réticulation moléculaire qui solidifie les zones exposées à la lumière.</li>
+                        <li><strong>Méthode Analogique :</strong> Repose sur l'exposition dorsale (talon), puis frontale sous vide à travers un film négatif argentique, suivi d'un lavage solvant/eau et séchage au four (50-60°C).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: CTP & Gravure Laser Directe -->
+        <section class="slide" id="slide-9">
+            <div class="grid grid-quad">
+                <div class="quad-item title-cell" style="position: relative; overflow: hidden;">
+                    <div class="bg-motif bg-motif-top-left">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><polygon points="50,10 90,30 90,70 50,90 10,70 10,30" /></svg>
+                    </div>
+                    <h2 class="slide-title">Méthodes de Confection<br>Numériques</h2>
+                </div>
+                <div class="quad-item text-cell bg-light">
+                    <div class="list-grid flexo-grid">
+                        <div class="list-item">
+                            <svg class="bullet-svg outline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                            <p><strong>CTP (Computer-to-Plate) :</strong> Laser IR de 830 nm pour vaporiser un masque carbone LAMS.</p>
+                        </div>
+                        <div class="list-item">
+                            <svg class="bullet-svg outline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+                            <p><strong>Bords nets :</strong> Moins de diffusion de lumière, points de trame jusqu'à 1 micron.</p>
+                        </div>
+                        <div class="list-item">
+                            <svg class="bullet-svg outline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            <p><strong>DLE (Direct Laser Engraving) :</strong> Sculpture laser CO2/YAG directe sur caoutchouc.</p>
+                        </div>
+                        <div class="list-item">
+                            <svg class="bullet-svg outline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            <p><strong>Zéro chimie :</strong> Aucun lavage, aucun solvant, stabilité dimensionnelle parfaite.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="quad-item visual-cell-1 bg-dark text-light">
+                    <div class="visual-placeholder">Technologie CTP (LAMS)</div>
+                </div>
+                <div class="quad-item visual-cell-2 bg-accent text-light">
+                    <div class="visual-placeholder">Gravure Laser Directe (DLE)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Encres et Substrats -->
+        <section class="slide" id="slide-10">
+            <div class="grid grid-split-left">
+                <div class="slide-content bg-light">
+                    <div class="bg-motif bg-motif-bottom-left">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                    </div>
+                    <h2 class="slide-title">Encres & Substrats</h2>
+                    <ul class="bullet-list">
+                        <li><strong>À base d'eau :</strong> Écologique (faible COV), inodore, idéale pour les cartons et papiers.</li>
+                        <li><strong>À base de solvant :</strong> Excellente adhérence et séchage ultra-rapide sur films plastiques.</li>
+                        <li><strong>UV / UV-LED :</strong> Polymérisation instantanée, sans ozone, réduction d'énergie de 60 à 80% en LED.</li>
+                        <li><strong>Traitement Corona :</strong> Décharge électrique en ligne nécessaire pour augmenter la tension superficielle des plastiques et assurer l'adhérence.</li>
+                    </ul>
+                </div>
+                <div class="slide-visual bg-dark">
+                    <div class="visual-placeholder text-light">Technologie d'Encrage &<br>Traitement de Surface</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Vidéos -->
+        <section class="slide" id="slide-11">
+            <div class="grid grid-split-left">
+                <div class="slide-content">
+                    <div class="bg-motif bg-motif-bottom-left">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+
+                    <h2 class="slide-title">Procédés en Action</h2>
+                    <ul class="bullet-list">
+                        <li>Visualisation industrielle des machines en fonctionnement.</li>
+                        <li><strong>Vidéo de gauche :</strong> L'impression Offset (procédé indirect).</li>
+                        <li><strong>Vidéo de droite :</strong> La Flexographie (procédé direct en relief).</li>
+                    </ul>
+                </div>
+                <div class="slide-visual bg-dark split-visuals">
+                    <div class="video-container border-bottom" data-video="offset">
+                        <video src="media/video_offset.mp4" loop muted playsinline preload="none"></video>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <span>Démo: Offset</span>
+                        </div>
+                    </div>
+                    <div class="video-container" data-video="flexo">
+                        <video src="media/video_flexographie.mp4" loop muted playsinline preload="none"></video>
+                        <div class="play-overlay">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <span>Démo: Flexographie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 12: Comparatif des Procédés -->
+        <section class="slide" id="slide-12">
+            <div class="grid grid-vertical bg-light" style="position: relative; overflow: hidden;">
+                <div class="bg-motif bg-motif-bottom-right">
+                    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1"><circle cx="35" cy="50" r="30"/><circle cx="65" cy="50" r="30"/></svg>
+                </div>
+                <div class="slide-header-full" style="position: relative; z-index: 2;">
+                    <h2 class="slide-title text-center">Comparatif : Flexo vs Offset vs Hélio</h2>
+                </div>
+                <!-- Custom comparative layout for 3 columns -->
+                <div class="comparison-table flexo-3way-table">
+                    <div class="comp-col border-right">
+                        <h3 class="comp-title">Flexographie</h3>
+                        <ul class="bullet-list tight">
+                            <li><strong>Forme :</strong> Relief souple (cliché polymère)</li>
+                            <li><strong>Coût plaque :</strong> 200€ à 800€ par couleur</li>
+                            <li><strong>Supports :</strong> Tous (cartons, films fins, métaux)</li>
+                            <li><strong>Vitesse :</strong> Élevée (jusqu'à 600 m/min)</li>
+                            <li><strong>Tirage rent. :</strong> Moyen à long</li>
+                        </ul>
+                    </div>
+                    <div class="comp-col border-right">
+                        <h3 class="comp-title" style="color: #666;">Offset</h3>
+                        <ul class="bullet-list tight">
+                            <li><strong>Forme :</strong> Plane (séparation eau / encre)</li>
+                            <li><strong>Coût plaque :</strong> 15€ à 50€</li>
+                            <li><strong>Supports :</strong> Papier et carton plat rigide</li>
+                            <li><strong>Vitesse :</strong> Moyenne (~250 m/min)</li>
+                            <li><strong>Tirage rent. :</strong> Court à moyen</li>
+                        </ul>
+                    </div>
+                    <div class="comp-col">
+                        <h3 class="comp-title" style="color: #000;">Héliogravure</h3>
+                        <ul class="bullet-list tight">
+                            <li><strong>Forme :</strong> Cylindre métallique gravé en creux</li>
+                            <li><strong>Coût cylindre :</strong> 3000€ à 10000€</li>
+                            <li><strong>Supports :</strong> Papiers fins, plastiques souples</li>
+                            <li><strong>Vitesse :</strong> Très élevée (1000 m/min)</li>
+                            <li><strong>Tirage rent. :</strong> Très long (>100 km)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13: Avenir et Innovation -->
+        <section class="slide" id="slide-13">
+            <div class="grid grid-split-right">
+                <div class="slide-visual bg-accent">
+                    <div class="visual-placeholder text-light">Innovations & Écologie</div>
+                </div>
+                <div class="slide-content">
+                    <div class="bg-motif bg-motif-bottom-right">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z" /></svg>
+                    </div>
+
+                    <h2 class="slide-title">Avenir & Écologie</h2>
+                    <ul class="bullet-list">
+                        <li><strong>Réglementation PPWR (2030) :</strong> Transition vers des mono-matériaux fins recyclables exigeant un contrôle de tension parfait.</li>
+                        <li><strong>FlatTop Dots (Flexo HD) :</strong> Points de trame plats résistants à la pression, éliminant le <em>dot gain</em>.</li>
+                        <li><strong>IA & Économie Circulaire :</strong> Caméras d'inspection 100% avec correction auto (réduit la gâche de 70%) et encres végétales.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 14: Conclusion -->
+        <section class="slide" id="slide-14">
+            <div class="grid grid-center bg-dark text-light">
+                <div class="content-wrapper-center">
+                    <div class="bg-motif bg-motif-bottom-right">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.5"><circle cx="50" cy="50" r="45"/><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="15"/></svg>
+                    </div>
+                    <h2 class="slide-title huge-title">Conclusion</h2>
+                    <ul class="bullet-list large-text border-left-accent">
+                        <li>La Flexographie s'impose comme le procédé d'emballage dominant et polyvalent.</li>
+                        <li>Les innovations de la Flexo HD (FlatTop Dots) offrent un rendu équivalent à l'héliogravure à coût maîtrisé.</li>
+                        <li>Elle s'adapte activement aux défis écologiques via des encres végétales, des systèmes UV-LED et le contrôle assisté par IA.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 15: Remerciements & Questions -->
+        <section class="slide" id="slide-15">
+            <div class="grid grid-title">
+                <div class="slide-content bg-light text-dark">
+                    <div class="bg-motif bg-motif-top-right">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <h1 class="huge-title">Merci pour<br>votre attention</h1>
+                    <h2 class="subtitle">Avez-vous des questions ?</h2>
+                    <div class="meta-info" style="margin-top: 4rem;">
+                        <div class="meta-block">
+                            <span class="meta-label">
+                                <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                Échange
+                            </span>
+                            <span class="meta-value">Dossier rédigé par Chohaib, Oualid, Abdllah et Bafrij.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-visual bg-accent text-light" style="position: relative; overflow: hidden;">
+                    <video id="finalAnimationVideo" src="media/video_animation.mp4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 5;" autoplay muted playsinline preload="auto"></video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Controls -->
+        <nav class="presentation-nav">
+            <button id="prevBtn" class="nav-btn" aria-label="Previous slide">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button id="nextBtn" class="nav-btn" aria-label="Next slide">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Cinematic Video Fullscreen Overlay -->
+    <div class="video-fullscreen-backdrop" id="videoBackdrop"></div>
+    <button class="video-close-btn" id="videoCloseBtn" aria-label="Close video">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 900; font-size: 15px; fill: #FFFFFF; letter-spacing: 0.05em; }
+      .subtitle { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 11px; fill: #E32619; text-anchor: end; }
+      .label-head { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 11px; text-transform: uppercase; }
+      .label-sub { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 10px; }
+      .label-desc { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 500; font-size: 10px; fill: #333333; }
+      .badge-text { font-family: 'Inter', Helvetica, Arial, sans-serif; font-weight: 800; font-size: 9px; fill: #FFFFFF; text-anchor: middle; }
+      .param-val { font-family: 'Courier New', monospace; font-weight: 700; font-size: 10px; fill: #0A0A0A; }
+    </style>
+    <pattern id="grid-mat" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="3"/>
+  <rect x="0" y="52" width="800" height="448" fill="url(#grid-mat)" />
+
+  <rect x="0" y="0" width="800" height="52" fill="#0A0A0A"/>
+  <text x="24" y="32" class="title">SCH-19 : MATRICE DÉCISIONNELLE COMPARATIVE DES PLAQUES</text>
+  <text x="776" y="32" class="subtitle">GRILLE DE SÉLECTION MULTI-CRITÈRES INDUSTRIELLE</text>
+
+  <!-- Table Matrix -->
+  <g transform="translate(30, 75)">
+    <!-- Header Row -->
+    <rect x="0" y="0" width="740" height="35" fill="#0A0A0A"/>
+    <text x="15" y="22" class="title" font-size="10px">TYPE DE PLAQUE</text>
+    <text x="170" y="22" class="title" font-size="10px">SUPPORT / CHIMIE</text>
+    <text x="320" y="22" class="title" font-size="10px">ENDURANCE MOYENNE</text>
+    <text x="470" y="22" class="title" font-size="10px">RÉSOLUTION / TRAME</text>
+    <text x="620" y="22" class="title" font-size="10px">COÛT RELATIF</text>
+
+    <!-- Row 1: Mono Mécanique -->
+    <g transform="translate(0, 35)">
+      <rect x="0" y="0" width="740" height="50" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="15" y="30" class="param-val" font-weight="900">Alu Mono Mécanique</text>
+      <text x="170" y="25" class="label-desc">Alu brossé sec</text>
+      <text x="170" y="40" class="label-desc">Diazo positif</text>
+      <text x="320" y="30" class="param-val">50 000 ex.</text>
+      <text x="470" y="30" class="label-desc">133 lpi (standard)</text>
+      <text x="620" y="30" class="param-val" fill="#16A34A">&euro; (Très Économique)</text>
+    </g>
+
+    <!-- Row 2: Mono Chimique -->
+    <g transform="translate(0, 85)">
+      <rect x="0" y="0" width="740" height="50" fill="#F8FAFC" stroke="#E5E7EB"/>
+      <text x="15" y="30" class="param-val" font-weight="900">Alu Mono Chimique</text>
+      <text x="170" y="25" class="label-desc">Alu poncé acide</text>
+      <text x="170" y="40" class="label-desc">Diazo positif</text>
+      <text x="320" y="30" class="param-val">150 000 ex.</text>
+      <text x="470" y="30" class="label-desc">150 lpi (moyen)</text>
+      <text x="620" y="30" class="param-val" fill="#16A34A">&euro;&euro; (Modéré)</text>
+    </g>
+
+    <!-- Row 3: Électrochimique Anodisée -->
+    <g transform="translate(0, 135)">
+      <rect x="0" y="0" width="740" height="50" fill="#FFFFFF" stroke="#E32619" stroke-width="1.5"/>
+      <text x="15" y="30" class="param-val" font-weight="900" fill="#E32619">Électrograinée Anodisée</text>
+      <text x="170" y="25" class="label-desc">Alu + Al2O3 corindon</text>
+      <text x="170" y="40" class="label-desc">Diazo ou Polymère</text>
+      <text x="320" y="30" class="param-val" fill="#E32619">300k - 500k ex.</text>
+      <text x="470" y="30" class="label-desc" font-weight="700">Jusqu'à 300 lpi</text>
+      <text x="620" y="30" class="param-val">&euro;&euro;&euro; (Optimal Labeur)</text>
+    </g>
+
+    <!-- Row 4: Polymère Négatif Cuit -->
+    <g transform="translate(0, 185)">
+      <rect x="0" y="0" width="740" height="50" fill="#F8FAFC" stroke="#E5E7EB"/>
+      <text x="15" y="30" class="param-val" font-weight="900">Photopolymère Négatif</text>
+      <text x="170" y="25" class="label-desc">Alu anodisé grainé</text>
+      <text x="170" y="40" class="label-desc">Polymère cuit (four)</text>
+      <text x="320" y="30" class="param-val" font-weight="900">&gt; 1 000 000 ex.</text>
+      <text x="470" y="30" class="label-desc">175 lpi (rotative)</text>
+      <text x="620" y="30" class="param-val">&euro;&euro;&euro;&euro; (Investissement)</text>
+    </g>
+
+    <!-- Row 5: Multi-métaux Chromée -->
+    <g transform="translate(0, 235)">
+      <rect x="0" y="0" width="740" height="50" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="1.5"/>
+      <text x="15" y="30" class="param-val" font-weight="900">Bimétallique / Trimétal</text>
+      <text x="170" y="25" class="label-desc">Chrome / Cuivre / Acier</text>
+      <text x="170" y="40" class="label-desc">Gravure chimique</text>
+      <text x="320" y="30" class="param-val" font-weight="900" fill="#E32619">1 à 2 Millions ex.</text>
+      <text x="470" y="30" class="label-desc">Spécial emballage métal</text>
+      <text x="620" y="30" class="param-val" fill="#DC2626">&euro;&euro;&euro;&euro;&euro; (Trés Élevé)</text>
+    </g>
+  </g>
+
+  <!-- Bottom Banner -->
+  <g transform="translate(30, 415)">
+    <rect x="0" y="0" width="740" height="65" fill="#0A0A0A"/>
+    <text x="25" y="26" class="title" fill="#FFFFFF" font-size="12px">ARBITRAGE TECHNIQUE &amp; ÉCONOMIQUE</text>
+    <text x="25" y="48" class="label-desc" fill="#D1D5DB">La plaque offset standard du marché mondial actuel : Aluminium électrograiné et anodisé à couche positive (rapport qualité/coût imbattable).</text>
+  </g>
+</svg>

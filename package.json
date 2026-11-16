@@ -1,14 +1,50 @@
 {
-  "name": "concept-identite-numerique",
+  "name": "production-plaques-offset",
+  "productName": "Production des Formes Imprimantes - Les Plaques Offset",
   "version": "1.0.0",
-  "description": "Presentation immersive et interactive sur l'Identite Numerique avec moteur antigravite et 3D.",
+  "description": "Presentation immersive et interactive sur les Plaques Offset.",
   "main": "main.js",
+  "author": {
+    "name": "Chohaib Soufiane",
+    "email": "chohaibsoufiane@gmail.com"
+  },
   "scripts": {
-    "start": "electron .",
-    "dev": "electron ."
+    "start": "node scripts/run-electron.cjs",
+    "dev": "node scripts/run-electron.cjs",
+    "dist": "electron-builder --win --dir",
+    "dist:exe": "electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "com.offset.plaques",
+    "productName": "Plaques Offset",
+    "asar": false,
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        "dir",
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "deleteAppDataOnUninstall": false
+    },
+    "files": [
+      "**/*",
+      "!release/**",
+      "!assets/*.mov",
+      "!Les_Plaques_Offset.pdf",
+      "!scripts/crop.ps1",
+      "!scripts/launch-electron-desktop.ps1"
+    ]
   },
   "devDependencies": {
     "electron": "^31.0.0",
+    "electron-builder": "^26.15.3",
     "three": "^0.160.0"
   }
 }

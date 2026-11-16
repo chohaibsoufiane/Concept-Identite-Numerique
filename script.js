@@ -1,364 +1,849 @@
-// Interactive 3D Presentation Slide Controller with Verified Electron Window Controls
+/**
+ * @file script.js
+ * @project Production des Formes Imprimantes — Les Plaques Offset
+ * @module Procédés d'Impression Offset
+ *
+ * @team
+ *   - Mohammed Badaoui
+ *   - Abdelhafide Elhouate
+ *   - Amine Amal
+ *   - Chohaib Soufiane
+ *   - Rayane El Makhloufi
+ *   - Mhaitate Aymen
+ */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ── 1. Bulletproof Electron Window Controls ──
-  const btnMin = document.getElementById('electron-min');
-  const btnMax = document.getElementById('electron-max');
-  const btnClose = document.getElementById('electron-close');
+    console.log(
+        '%c Production des Formes Imprimantes %c Les Plaques Offset \n' +
+        'Équipe: Mohammed Badaoui, Abdelhafide Elhouate, Amine Amal, Chohaib Soufiane, Rayane El Makhloufi, Mhaitate Aymen',
+        'background: #E32619; color: #fff; font-weight: 700; padding: 3px 6px; border-radius: 0;',
+        'background: #111; color: #00A8FF; font-weight: 700; padding: 3px 6px; border-radius: 0;'
+    );
 
-  if (window.electronAPI) {
-    if (btnMin) btnMin.addEventListener('click', (e) => { e.stopPropagation(); window.electronAPI.minimize(); });
-    if (btnMax) btnMax.addEventListener('click', (e) => { e.stopPropagation(); window.electronAPI.maximize(); });
-    if (btnClose) btnClose.addEventListener('click', (e) => { e.stopPropagation(); window.electronAPI.close(); });
-  }
+    const container = document.querySelector('.presentation-container');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const counterTrack = document.getElementById('counterTrack');
 
-  // ── 2. Slides Management & State ──
-  const slides = Array.from(document.querySelectorAll('.presentation-slide'));
-  const currentNumEl = document.getElementById('current-slide-num');
-  const totalNumEl = document.getElementById('total-slides-num');
-  const dotsContainer = document.getElementById('nav-dots-container');
-  const prevBtn = document.getElementById('nav-prev-btn');
-  const nextBtn = document.getElementById('nav-next-btn');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    let isTransitioning = false;
+    const transitionDuration = 200; // Matches --t-long CSS duration
 
-  let activeIndex = 0;
-  const totalSlides = slides.length;
-  if (totalNumEl) totalNumEl.textContent = String(totalSlides).padStart(2, '0');
+    // Check if we are in admin edit mode
+    const isAdminMode = window.location.hash === '#admin' || window.location.search.includes('admin');
 
-  // Build navigation dots
-  dotsContainer.innerHTML = '';
-  slides.forEach((_, idx) => {
-    const dot = document.createElement('div');
-    dot.className = `nav-dot ${idx === 0 ? 'active' : ''}`;
-    dot.addEventListener('click', () => switchSlide(idx));
-    dotsContainer.appendChild(dot);
-  });
+    function initCinematicSystem() {
+        // Advanced Text Splitting Setup - ONLY run if NOT in admin mode
+        if (!isAdminMode) {
+            // Function to split text nodes into animated word wrappers while preserving internal HTML (spans, colors, brs)
+            function processNode(node, counter) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const text = node.textContent;
+                    if (!text) return document.createDocumentFragment();
+                    
+                    const fragment = document.createDocumentFragment();
+                    const tokens = text.split(/(\s+)/);
+                    tokens.forEach(token => {
+                        if (!token) return;
+                        if (/^\s+$/.test(token)) {
+                            fragment.appendChild(document.createTextNode(token));
+                        } else {
+                            const wrapper = document.createElement('span');
+                            wrapper.className = 'word-wrapper';
+                            const inner = document.createElement('span');
+                            inner.className = 'word';
+                            inner.style.setProperty('--word-idx', counter.count++);
+                            inner.textContent = token;
+                            wrapper.appendChild(inner);
+                            fragment.appendChild(wrapper);
+                        }
+                    });
+                    return fragment;
+                } else if (node.nodeType === Node.ELEMENT_NODE) {
+                    if (node.tagName.toLowerCase() === 'br') {
+                        return node.cloneNode(true);
+                    }
+                    const clone = node.cloneNode(false);
+                    Array.from(node.childNodes).forEach(child => {
+                        const res = processNode(child, counter);
+                        if (res) clone.appendChild(res);
+                    });
+                    return clone;
+                }
+                return node.cloneNode(true);
+            }
 
-  function switchSlide(targetIndex) {
-    if (targetIndex < 0 || targetIndex >= totalSlides || targetIndex === activeIndex) return;
+            document.querySelectorAll('.huge-title, .slide-title, .subtitle').forEach(el => {
+                const counter = { count: 0 };
+                const fragment = document.createDocumentFragment();
+                Array.from(el.childNodes).forEach(child => {
+                    const res = processNode(child, counter);
+                    if (res) fragment.appendChild(res);
+                });
+                el.innerHTML = '';
+                el.appendChild(fragment);
+                el.classList.add('anim-title-container');
+            });
+        } // End !isAdminMode check
 
-    const currentSlide = slides[activeIndex];
-    const targetSlide = slides[targetIndex];
+        // Layer delay staging
+        slides.forEach(slide => {
+            const groups = [
+                slide.querySelectorAll('.presenter-tag, .slide-tag'),
+                slide.querySelectorAll('.anim-title-container'),
+                slide.querySelectorAll('.bullet-list li, .list-item, .meta-block, .col-title, .comp-title, .sommaire-card, .chem-formula-box, .chem-dual-item, .timeline-step, .plate-desc, .kinetic-rise'),
+                slide.querySelectorAll('.slide-visual, .slide-focus-visual, .visual-cell-1, .visual-cell-2, .plate-img-box, .senefelder-container')
+            ];
 
-    currentSlide.classList.remove('active');
-    currentSlide.classList.add('outgoing-left');
-    setTimeout(() => currentSlide.classList.remove('outgoing-left'), 500);
+            let baseDelay = 0.2; // Offset to let scene movement breathe
+            let sequenceTime = 0;
 
-    targetSlide.classList.add('active');
-    activeIndex = targetIndex;
+            groups.forEach((group, index) => {
+                let itemOffset = 0;
+                group.forEach(el => {
+                    // Assign class behaviors for generic elements
+                    if (index === 3) {
+                        el.classList.add('anim-visual');
+                    } else if (index === 2 || index === 0) {
+                        el.classList.add('anim-fade-up');
+                    }
 
-    // Update numbers and dots
-    if (currentNumEl) currentNumEl.textContent = String(activeIndex + 1).padStart(2, '0');
-    const allDots = dotsContainer.querySelectorAll('.nav-dot');
-    allDots.forEach((d, i) => d.classList.toggle('active', i === activeIndex));
+                    // Assign CSS variables
+                    el.style.setProperty('--base-delay', `${baseDelay + sequenceTime + itemOffset}s`);
+                    itemOffset += 0.05; // rapid staccato
+                });
 
-    // Notify corresponding 3D scene
-    onSlideActivated(activeIndex);
-  }
+                // Allow overlapping timings (don't wait for prev group to finish)
+                sequenceTime += 0.15;
+            });
+        });
 
-  if (prevBtn) prevBtn.addEventListener('click', () => switchSlide(activeIndex - 1));
-  if (nextBtn) nextBtn.addEventListener('click', () => switchSlide(activeIndex + 1));
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
-      switchSlide(activeIndex + 1);
-    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-      switchSlide(activeIndex - 1);
-    } else if (e.key === 'F11' && window.electronAPI) {
-      window.electronAPI.toggleFullScreen();
-    }
-  });
-
-  // ── 3. Three.js 3D Scenes for Each Slide ──
-  const scenes3D = [];
-
-  function create3DScene(canvasId, setupFn) {
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) return null;
-
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
-    camera.position.set(0, 0, 16);
-
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
-    scene.add(ambientLight);
-
-    const dirLight = new THREE.DirectionalLight(0x06b6d4, 2.5);
-    dirLight.position.set(10, 15, 12);
-    scene.add(dirLight);
-
-    const pointLight = new THREE.PointLight(0x8b5cf6, 2, 40);
-    pointLight.position.set(-10, -10, 10);
-    scene.add(pointLight);
-
-    const group = new THREE.Group();
-    scene.add(group);
-
-    const customUpdate = setupFn(group, scene, camera);
-
-    function resize() {
-      const parent = canvas.parentElement;
-      if (!parent) return;
-      const w = parent.clientWidth;
-      const h = parent.clientHeight;
-      if (w > 0 && h > 0) {
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-        renderer.setSize(w, h, false);
-      }
-    }
-
-    return { renderer, scene, camera, group, customUpdate, resize };
-  }
-
-  // Slide 0: Cover Holographic Sphere
-  scenes3D[0] = create3DScene('canvas-slide-0', (group) => {
-    const coreGeo = new THREE.IcosahedronGeometry(4.2, 2);
-    const coreMat = new THREE.MeshStandardMaterial({ color: 0x06b6d4, wireframe: true });
-    const core = new THREE.Mesh(coreGeo, coreMat);
-    group.add(core);
-
-    const glowGeo = new THREE.SphereGeometry(3.2, 32, 32);
-    const glowMat = new THREE.MeshStandardMaterial({ color: 0x3b82f6, roughness: 0.2, metalness: 0.8 });
-    const glow = new THREE.Mesh(glowGeo, glowMat);
-    group.add(glow);
-
-    return () => {
-      core.rotation.y += 0.006;
-      core.rotation.x += 0.003;
-      glow.rotation.y -= 0.004;
-    };
-  });
-
-  // Slide 1: Iceberg Visible Tip (Above Water)
-  scenes3D[1] = create3DScene('canvas-slide-1', (group, scene, camera) => {
-    camera.position.set(0, 1, 14);
-
-    const tipGeo = new THREE.ConeGeometry(3.5, 7.5, 7);
-    const tipMat = new THREE.MeshStandardMaterial({ color: 0xdbeafe, roughness: 0.2, metalness: 0.1, flatShading: true });
-    const tip = new THREE.Mesh(tipGeo, tipMat);
-    tip.position.y = 1.5;
-    group.add(tip);
-
-    const waterGeo = new THREE.PlaneGeometry(24, 24);
-    const waterMat = new THREE.MeshBasicMaterial({ color: 0x0284c7, transparent: true, opacity: 0.45, side: THREE.DoubleSide });
-    const water = new THREE.Mesh(waterGeo, waterMat);
-    water.rotation.x = Math.PI / 2;
-    water.position.y = -2.25;
-    group.add(water);
-
-    return () => {
-      tip.rotation.y += 0.005;
-    };
-  });
-
-  // Slide 2: Iceberg Deep Base (Underwater)
-  scenes3D[2] = create3DScene('canvas-slide-2', (group, scene, camera) => {
-    camera.position.set(0, -2, 16);
-
-    const baseGeo = new THREE.CylinderGeometry(4, 9, 13, 8);
-    const baseMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.6, metalness: 0.3, flatShading: true });
-    const base = new THREE.Mesh(baseGeo, baseMat);
-    base.position.y = -2;
-    group.add(base);
-
-    const waterGeo = new THREE.PlaneGeometry(28, 28);
-    const waterMat = new THREE.MeshBasicMaterial({ color: 0x0369a1, transparent: true, opacity: 0.4, side: THREE.DoubleSide });
-    const water = new THREE.Mesh(waterGeo, waterMat);
-    water.rotation.x = Math.PI / 2;
-    water.position.y = 4.5;
-    group.add(water);
-
-    return () => {
-      base.rotation.y += 0.005;
-    };
-  });
-
-  // Slide 3: Trace Generation (Avatar & Flying Particle Stream)
-  scenes3D[3] = create3DScene('canvas-slide-3', (group) => {
-    const headGeo = new THREE.SphereGeometry(1.8, 32, 32);
-    const headMat = new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.6, roughness: 0.2 });
-    const head = new THREE.Mesh(headGeo, headMat);
-    head.position.y = 1.8;
-    group.add(head);
-
-    const bodyGeo = new THREE.CylinderGeometry(1.2, 2.6, 3.8, 32);
-    const bodyMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.6 });
-    const body = new THREE.Mesh(bodyGeo, bodyMat);
-    body.position.y = -1.6;
-    group.add(body);
-
-    // Flowing data particles
-    const count = 160;
-    const partGeo = new THREE.BufferGeometry();
-    const positions = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 8;
-      positions[i * 3 + 1] = Math.random() * 8;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 8;
-    }
-    partGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const partMat = new THREE.PointsMaterial({ color: 0x06b6d4, size: 0.35, transparent: true, opacity: 0.9 });
-    const points = new THREE.Points(partGeo, partMat);
-    group.add(points);
-
-    // Passive grid lines below
-    const gridHelper = new THREE.GridHelper(16, 16, 0xef4444, 0x3b82f6);
-    gridHelper.position.y = -3.8;
-    group.add(gridHelper);
-
-    return () => {
-      const arr = points.geometry.attributes.position.array;
-      for (let i = 1; i < arr.length; i += 3) {
-        arr[i] += 0.04;
-        if (arr[i] > 8) arr[i] = 0;
-      }
-      points.geometry.attributes.position.needsUpdate = true;
-      group.rotation.y += 0.004;
-    };
-  });
-
-  // Slide 4: E-Reputation Mirror
-  scenes3D[4] = create3DScene('canvas-slide-4', (group) => {
-    const cardGroup = new THREE.Group();
-
-    // Face A (Bright clean side)
-    const faceAGeo = new THREE.BoxGeometry(7, 10, 0.2);
-    const faceAMat = new THREE.MeshStandardMaterial({ color: 0x3b82f6, metalness: 0.4, roughness: 0.3 });
-    const faceA = new THREE.Mesh(faceAGeo, faceAMat);
-    faceA.position.z = 0.1;
-    cardGroup.add(faceA);
-
-    // Face B (Shadow Profile crimson side)
-    const faceBGeo = new THREE.BoxGeometry(7, 10, 0.2);
-    const faceBMat = new THREE.MeshStandardMaterial({ color: 0x881337, metalness: 0.3, roughness: 0.4 });
-    const faceB = new THREE.Mesh(faceBGeo, faceBMat);
-    faceB.position.z = -0.1;
-    faceB.rotation.y = Math.PI;
-    cardGroup.add(faceB);
-
-    group.add(cardGroup);
-
-    return () => {
-      cardGroup.rotation.y += 0.012;
-    };
-  });
-
-  // Slide 5: The Security Breach (Fractured Padlock)
-  scenes3D[5] = create3DScene('canvas-slide-5', (group) => {
-    const lockGroup = new THREE.Group();
-
-    const ringGeo = new THREE.TorusGeometry(2.4, 0.45, 16, 32, Math.PI);
-    const ringMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.9, roughness: 0.2 });
-    const ring = new THREE.Mesh(ringGeo, ringMat);
-    ring.position.y = 2.2;
-    lockGroup.add(ring);
-
-    // Two split halves
-    const halfGeo = new THREE.BoxGeometry(2.6, 4.4, 1.4);
-    const halfMat = new THREE.MeshStandardMaterial({ color: 0xef4444, metalness: 0.5, roughness: 0.2 });
-
-    const left = new THREE.Mesh(halfGeo, halfMat);
-    left.position.set(-1.8, -0.6, 0);
-    lockGroup.add(left);
-
-    const right = new THREE.Mesh(halfGeo, halfMat);
-    right.position.set(1.8, -0.6, 0);
-    lockGroup.add(right);
-
-    group.add(lockGroup);
-
-    return () => {
-      lockGroup.rotation.y += 0.006;
-    };
-  });
-
-  // Slide 6: Industrial Data Conveyor & Shield Dome
-  scenes3D[6] = create3DScene('canvas-slide-6', (group) => {
-    const beltGeo = new THREE.BoxGeometry(14, 0.4, 4);
-    const beltMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.7 });
-    const belt = new THREE.Mesh(beltGeo, beltMat);
-    belt.position.y = -2;
-    group.add(belt);
-
-    // Data gold coins
-    for (let i = 0; i < 4; i++) {
-      const coinGeo = new THREE.CylinderGeometry(1.2, 1.2, 0.35, 32);
-      const coinMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.8, roughness: 0.2 });
-      const coin = new THREE.Mesh(coinGeo, coinMat);
-      coin.position.set(-4.5 + i * 3, -0.8, 0);
-      group.add(coin);
+        // Initial paint setup
+        container.setAttribute('data-direction', 'next');
+        slides[currentSlide].classList.add('active');
+        void container.offsetWidth; // Force reflow
+        updateProgress();
     }
 
-    // Protection Shield Dome
-    const domeGeo = new THREE.SphereGeometry(6, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2);
-    const domeMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.35, wireframe: true });
-    const dome = new THREE.Mesh(domeGeo, domeMat);
-    dome.position.y = -2;
-    group.add(dome);
+    initCinematicSystem();
 
-    return () => {
-      dome.rotation.y += 0.005;
-      group.rotation.y += 0.003;
-    };
-  });
-
-  // Slide 7: Control Panel & 2FA Smartphone
-  scenes3D[7] = create3DScene('canvas-slide-7', (group) => {
-    const phoneGeo = new THREE.BoxGeometry(4.8, 9.4, 0.45);
-    const phoneMat = new THREE.MeshStandardMaterial({ color: 0x1e1e2f, roughness: 0.2, metalness: 0.8 });
-    const phone = new THREE.Mesh(phoneGeo, phoneMat);
-    group.add(phone);
-
-    const screenGeo = new THREE.BoxGeometry(4.3, 8.8, 0.05);
-    const screenMat = new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.2 });
-    const screen = new THREE.Mesh(screenGeo, screenMat);
-    screen.position.z = 0.24;
-    group.add(screen);
-
-    const shieldGeo = new THREE.RingGeometry(3.6, 4.8, 32);
-    const shieldMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, side: THREE.DoubleSide });
-    const shield = new THREE.Mesh(shieldGeo, shieldMat);
-    shield.position.z = 0.35;
-    group.add(shield);
-
-    return () => {
-      shield.rotation.z += 0.01;
-      group.rotation.y += 0.006;
-    };
-  });
-
-  // ── 4. Main 3D Render Loop ──
-  function onSlideActivated(idx) {
-    if (scenes3D[idx]) {
-      scenes3D[idx].resize();
+    if (isAdminMode) {
+        initAdminSystem();
     }
-  }
 
-  function renderLoop() {
-    requestAnimationFrame(renderLoop);
-    const currentScene = scenes3D[activeIndex];
-    if (currentScene && currentScene.renderer) {
-      if (currentScene.customUpdate) currentScene.customUpdate();
-      currentScene.renderer.render(currentScene.scene, currentScene.camera);
+    function initAdminSystem() {
+        // Define all elements that should be editable
+        const editableTargets = '.press-title, .huge-title, .slide-title, .subtitle, .meta-label, .meta-value, .bullet-list li, .list-item p, .quad-item p, .visual-placeholder, .slider-text, .col-title';
+
+        document.querySelectorAll(editableTargets).forEach(el => {
+            el.setAttribute('contenteditable', 'true');
+            // Give a visual hint that it's editable
+            el.style.outline = '2px dashed rgba(227, 38, 25, 0.5)';
+            el.style.outlineOffset = '4px';
+            el.style.transition = 'outline 0.2s';
+
+            el.addEventListener('focus', () => el.style.outline = '2px solid rgba(227, 38, 25, 1)');
+            el.addEventListener('blur', () => el.style.outline = '2px dashed rgba(227, 38, 25, 0.5)');
+        });
+
+        // Sync the 4-layer Cover Title so the user only edits the top white one, and the color plates automatically mirror it
+        const mainTitle = document.querySelector('.press-title.screen-white');
+        const colorPlates = document.querySelectorAll('.press-title:not(.screen-white)');
+        if (mainTitle) {
+            colorPlates.forEach(plate => {
+                plate.removeAttribute('contenteditable');
+                plate.style.outline = 'none'; // hide outline on underlying plates
+            });
+            mainTitle.addEventListener('input', () => {
+                colorPlates.forEach(plate => plate.innerHTML = mainTitle.innerHTML);
+            });
+        }
+
+        // Inject floating Admin Toolbar
+        const toolbar = document.createElement('div');
+        toolbar.id = 'adminModeToolbar';
+        toolbar.innerHTML = `
+            <div style="position: fixed; top: 20px; right: 20px; background: var(--color-dark); color: white; padding: 15px 25px; border-radius: 0; z-index: 99999; font-family: var(--font-main); border: 2px solid white; display: flex; align-items: center; gap: 20px;">
+                <div style="display: flex; flex-direction: column;">
+                    <span style="font-weight: 900; letter-spacing: 2px; color: var(--color-accent); font-size: 1.2rem;">MODE ADMIN ACTIF</span>
+                    <input type="text" id="adminDocTitle" value="${document.title}" title="Titre de l'onglet" style="margin-top: 5px; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 4px 8px; border-radius: 3px; font-size: 0.8rem; width: 100%;">
+                </div>
+                <button id="saveAdminChangesBtn" style="background: var(--color-accent); color: white; border: none; padding: 10px 20px; font-weight: 900; cursor: pointer; border-radius: 4px; text-transform: uppercase;">1. Écraser le fichier</button>
+            </div>
+        `;
+        document.body.appendChild(toolbar);
+
+        // Save logic
+        document.getElementById('saveAdminChangesBtn').addEventListener('click', async () => {
+            const htmlClone = document.documentElement.cloneNode(true);
+
+            // Sync the document title
+            const newTitle = document.getElementById('adminDocTitle').value;
+            htmlClone.querySelector('title').textContent = newTitle;
+
+            // Remove the admin toolbar from the clone so it doesn't get saved permanently
+            const cloneToolbar = htmlClone.querySelector('#adminModeToolbar');
+            if (cloneToolbar) cloneToolbar.remove();
+
+            // Clear all structural editor traces
+            htmlClone.querySelectorAll('[contenteditable]').forEach(el => {
+                el.removeAttribute('contenteditable');
+                el.style.outline = '';
+                el.style.outlineOffset = '';
+                el.style.transition = '';
+                if (el.getAttribute('style') === '') el.removeAttribute('style');
+            });
+            // Clear plate overrides
+            htmlClone.querySelectorAll('.press-title:not(.screen-white)').forEach(el => {
+                el.style.outline = '';
+                if (el.getAttribute('style') === '') el.removeAttribute('style');
+            });
+
+            // Prevent saving temporary animation classes that might lock elements
+            htmlClone.querySelectorAll('.slide').forEach((s, idx) => {
+                s.classList.remove('active', 'outgoing', 'incoming');
+                if (idx === 0) s.classList.add('active'); // Reset slide 1 as default active
+            });
+            htmlClone.querySelector('.presentation-container').setAttribute('data-slide', '1');
+            htmlClone.querySelector('.presentation-container').setAttribute('data-direction', 'next');
+            const cloneCounter = htmlClone.querySelector('#counterTrack');
+            if (cloneCounter) cloneCounter.style.transform = 'translateY(0)';
+
+            // Build html string
+            const htmlContent = '<!DOCTYPE html>\\n' + htmlClone.outerHTML;
+
+            // Direct Save to File System API (Modern, overwrites directly)
+            if (window.showSaveFilePicker) {
+                try {
+                    const handle = await window.showSaveFilePicker({
+                        suggestedName: 'index.html',
+                        types: [{ description: 'Fichier HTML', accept: { 'text/html': ['.html'] } }],
+                    });
+                    const writable = await handle.createWritable();
+                    await writable.write(htmlContent);
+                    await writable.close();
+                    alert('✅ Modifications enregistrées DIRECTEMENT sur votre fichier principal !\\n\\nVous pouvez recharger la page sans #admin pour voir le résultat.');
+                    return; // exit if success
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        console.error('File System API Error:', err);
+                    } else {
+                        return; // User cancelled
+                    }
+                }
+            }
+
+            // Fallback: Trigger standard invisible file download
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'index.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            alert("✅ Fichier exporté virtuellement !\\n\\nLe navigateur ne permettant pas l'écrasement direct sous Safari/Ancien Chrome, veuillez remplacer votre ancien HTML avec le fichier qui vient d'être téléchargé.");
+        });
     }
-  }
 
-  // Handle Window Resize for all Canvases
-  window.addEventListener('resize', () => {
-    scenes3D.forEach(s => {
-      if (s && s.resize) s.resize();
+    // ==========================================================================
+    // INTERACTIVE TIMELINE (AMINE AMAL — SLIDE 04)
+    // ==========================================================================
+    let historyStep = 0;
+    const historyTotalSteps = 4;
+
+    function updateHistoryLineUI(step, animatePop = true) {
+        historyStep = Math.max(0, Math.min(step, historyTotalSteps - 1));
+
+        const slide04 = document.getElementById('slide-04');
+        if (!slide04) return;
+
+        // 1. Dynamic Rail Fill Progress (Station 1: 0% -> Station 4: 100%)
+        const fillBar = document.getElementById('timelineRailFill');
+        if (fillBar) {
+            const percent = (historyStep / (historyTotalSteps - 1)) * 100;
+            fillBar.style.width = `${percent}%`;
+        }
+
+        // 2. Future Dots (Three Points appearing at Aluminum Part)
+        const futureDots = document.getElementById('timelineFutureDots');
+        if (futureDots) {
+            if (historyStep === historyTotalSteps - 1) {
+                futureDots.classList.add('is-active');
+            } else {
+                futureDots.classList.remove('is-active');
+            }
+        }
+
+        // 3. Update Floating Plate Pods (Alternating Up/Down)
+        const pods = slide04.querySelectorAll('.floating-plate-pod');
+        pods.forEach((pod) => {
+            const idx = parseInt(pod.getAttribute('data-step'), 10);
+            pod.classList.remove('is-active', 'is-passed', 'is-future', 'pop-in');
+            if (idx === historyStep) {
+                pod.classList.add('is-active');
+                if (animatePop) {
+                    pod.classList.add('pop-in');
+                }
+            } else if (idx < historyStep) {
+                pod.classList.add('is-passed');
+            } else {
+                pod.classList.add('is-future');
+            }
+        });
+
+        // 4. Update Station Meta Pods (Years & Subtitles)
+        const metaPods = slide04.querySelectorAll('.station-meta-pod');
+        metaPods.forEach((meta) => {
+            const idx = parseInt(meta.getAttribute('data-step'), 10);
+            meta.classList.remove('is-active', 'is-passed', 'is-future');
+            if (idx === historyStep) {
+                meta.classList.add('is-active');
+            } else if (idx < historyStep) {
+                meta.classList.add('is-passed');
+            } else {
+                meta.classList.add('is-future');
+            }
+        });
+
+        // 5. Update Station Bubbles on Rail
+        const stations = slide04.querySelectorAll('.timeline-station');
+        stations.forEach((station, idx) => {
+            station.classList.remove('is-active', 'is-passed', 'is-future');
+            if (idx === historyStep) {
+                station.classList.add('is-active');
+            } else if (idx < historyStep) {
+                station.classList.add('is-passed');
+            } else {
+                station.classList.add('is-future');
+            }
+        });
+
+        // 6. Header Step Badge
+        const badge = document.getElementById('timelineStepBadge');
+        if (badge) {
+            badge.textContent = `0${historyStep + 1} / 04`;
+        }
+    }
+
+    function timelineNext() {
+        if (historyStep < historyTotalSteps - 1) {
+            updateHistoryLineUI(historyStep + 1, true);
+            return true; // handled in timeline
+        }
+        return false; // at end of timeline, advance to next slide
+    }
+
+    function timelinePrev() {
+        if (historyStep > 0) {
+            updateHistoryLineUI(historyStep - 1, false);
+            return true; // handled in timeline
+        }
+        return false; // at start of timeline, go back to previous slide
+    }
+
+    // Direct Click Listeners for History Line (Pods, Stations & Meta Labels)
+    // ==========================================================================
+    // SOMMAIRE STEPPED REVEAL (SLIDE 02 : 01-03 THEN 04-06 ON NEXT)
+    // ==========================================================================
+    let sommaireStep = 0;
+
+    function updateSommaireUI(step) {
+        sommaireStep = step === 1 ? 1 : 0;
+        const slide02 = document.getElementById('slide-02');
+        if (!slide02) return;
+        if (sommaireStep === 1) {
+            slide02.classList.add('step-2');
+        } else {
+            slide02.classList.remove('step-2');
+        }
+    }
+
+    function sommaireNext() {
+        if (sommaireStep < 1) {
+            updateSommaireUI(1);
+            return true;
+        }
+        return false;
+    }
+
+    function sommairePrev() {
+        if (sommaireStep > 0) {
+            updateSommaireUI(0);
+            return true;
+        }
+        return false;
+    }
+
+    const slide02El = document.getElementById('slide-02');
+    if (slide02El) {
+        slide02El.addEventListener('click', () => {
+            if (sommaireStep === 0) updateSommaireUI(1);
+        });
+    }
+
+    // ==========================================================================
+    // CLOSING SLIDE (SLIDE 20 : MERCI -> DES QUESTIONS ? N'HÉSITEZ PAS !)
+    // ==========================================================================
+    let closingStep = 0;
+    let closingTimer = null;
+
+    function updateClosingUI(step) {
+        if (closingTimer) {
+            clearTimeout(closingTimer);
+            closingTimer = null;
+        }
+        closingStep = step === 1 ? 1 : 0;
+        const slide20 = document.getElementById('slide-20');
+        if (!slide20) return;
+        if (closingStep === 1) {
+            slide20.classList.add('step-questions');
+        } else {
+            slide20.classList.remove('step-questions');
+        }
+    }
+
+    function closingNext() {
+        if (closingStep < 1) {
+            updateClosingUI(1);
+            return true;
+        }
+        return false;
+    }
+
+    function closingPrev() {
+        if (closingStep > 0) {
+            updateClosingUI(0);
+            return true;
+        }
+        return false;
+    }
+
+    const slide20El = document.getElementById('slide-20');
+    if (slide20El) {
+        slide20El.addEventListener('click', () => {
+            if (closingStep === 0) updateClosingUI(1);
+        });
+    }
+
+
+    const slide04El = document.getElementById('slide-04');
+    if (slide04El) {
+        slide04El.querySelectorAll('.floating-plate-pod, .timeline-station, .station-meta-pod').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const step = parseInt(el.getAttribute('data-step'), 10);
+                if (!isNaN(step)) updateHistoryLineUI(step, true);
+            });
+        });
+    }
+
+    
+    // ==========================================================================
+    // PLATE REVEAL (SLIDE 06)
+    // ==========================================================================
+    let platesStep = 0;
+    const platesTotalSteps = 3;
+
+    function updatePlatesUI(step) {
+        platesStep = Math.max(0, Math.min(step, platesTotalSteps - 1));
+        const slide06 = document.getElementById('slide-06');
+        if (!slide06) return;
+        const cols = slide06.querySelectorAll('.s6-plate-col');
+        cols.forEach((col, idx) => {
+            if (idx <= platesStep) {
+                col.style.opacity = '1';
+                col.style.transform = 'translateY(0)';
+            } else {
+                col.style.opacity = '0';
+                col.style.transform = 'translateY(40px)';
+            }
+        });
+    }
+
+    function platesNext() {
+        if (platesStep < platesTotalSteps - 1) {
+            updatePlatesUI(platesStep + 1);
+            return true;
+        }
+        return false;
+    }
+
+    function platesPrev() {
+        if (platesStep > 0) {
+            updatePlatesUI(platesStep - 1);
+            return true;
+        }
+        return false;
+    }
+
+    
+    function goToSlide(index, direction = 'next') {
+        if (typeof index !== 'number' || !Number.isInteger(index)) return;
+        if (index < 0 || index >= totalSlides) return;
+        if (index === currentSlide) return;
+
+        // Clean any unfinished outgoing states immediately so user can transition without delay
+        slides.forEach(s => s.classList.remove('outgoing'));
+
+        isTransitioning = true;
+
+        container.setAttribute('data-direction', direction);
+        void container.offsetWidth; // Flush CSS cache to commit direction BEFORE transitions trigger
+
+        const current = slides[currentSlide];
+        const next = slides[index];
+
+                // Reset Plates state when entering Slide 06
+        if (next && next.id === 'slide-06') {
+            platesStep = 0;
+            updatePlatesUI(0);
+        }
+
+        // Reset or initialize Closing slide state when entering Slide 20
+        if (next && next.id === 'slide-20') {
+            updateClosingUI(0);
+            closingTimer = setTimeout(() => {
+                updateClosingUI(1);
+            }, 3200);
+        } else if (closingTimer) {
+            clearTimeout(closingTimer);
+            closingTimer = null;
+        }
+
+        // Reset or initialize Sommaire state when entering Slide 02
+        if (next && next.id === 'slide-02') {
+            if (direction === 'next') {
+                updateSommaireUI(0);
+            } else if (direction === 'prev') {
+                updateSommaireUI(1);
+            }
+        }
+
+        // Reset or initialize sub-step state on destination slide
+        if (next && (next.id === 'slide-04' || next.dataset.hasSubsteps === 'true')) {
+            if (direction === 'next') {
+                updateHistoryLineUI(0, true);
+            } else if (direction === 'prev') {
+                updateHistoryLineUI(historyTotalSteps - 1, false);
+            }
+        }
+
+        // Wipe phantom states
+        slides.forEach(s => {
+            if (s !== current && s !== next) {
+                s.classList.remove('active', 'outgoing', 'incoming');
+            }
+        });
+
+        // The cinematic transition sequence
+        current.classList.remove('active');
+        current.classList.add('outgoing');
+
+        next.classList.remove('outgoing');
+        next.classList.add('active');
+
+        // Pause any video when leaving, reset when entering without autoplaying
+        current.querySelectorAll('video').forEach(v => {
+            v.pause();
+            v.dataset.hasStarted = 'false';
+            try { if (v.readyState >= 1) v.currentTime = 0; } catch (e) {}
+        });
+        next.querySelectorAll('video').forEach(v => {
+            v.pause();
+            v.dataset.hasStarted = 'false';
+            try { if (v.readyState >= 1) v.currentTime = 0; } catch (e) {}
+        });
+
+        currentSlide = index;
+        updateProgress();
+
+        // Release lock and clean classes
+        setTimeout(() => {
+            current.classList.remove('outgoing');
+            isTransitioning = false;
+        }, transitionDuration);
+    }
+
+    function updateProgress() {
+        container.setAttribute('data-slide', currentSlide + 1);
+        if (counterTrack) {
+            // Translate track upward by 3.5rem per slide index
+            counterTrack.style.transform = `translateY(-${currentSlide * 3.5}rem)`;
+        }
+    }
+
+    function nextSlide() {
+        const activeSlide = slides[currentSlide];
+
+        // 1. First Next click on a video slide starts playback; second Next click skips to next slide
+        const slideVideo = activeSlide ? activeSlide.querySelector('video') : null;
+        if (slideVideo && slideVideo.dataset.hasStarted !== 'true' && slideVideo.paused && !slideVideo.ended && !slideVideo.error && slideVideo.currentTime === 0) {
+            slideVideo.dataset.hasStarted = 'true';
+            slideVideo.play().catch(e => console.log('Playback prevented', e));
+            return;
+        }
+
+        // 1a. Closing slide stepped reveal (Slide 20: Merci -> Questions)
+        if (activeSlide && activeSlide.id === 'slide-20') {
+            const handled = closingNext();
+            if (handled) return;
+        }
+
+        // 1b. Sommaire stepped reveal (Slide 02: 01-03 then 04-06 on Next)
+        if (activeSlide && activeSlide.id === 'slide-02') {
+            const handled = sommaireNext();
+            if (handled) return;
+        }
+
+        // 2. Plates stepped reveal
+        if (activeSlide && activeSlide.id === 'slide-06') {
+            const handled = platesNext();
+            if (handled) return;
+        }
+
+        // 3. Timeline stepped reveal
+        if (activeSlide && (activeSlide.id === 'slide-04' || activeSlide.dataset.hasSubsteps === 'true')) {
+            const handled = timelineNext();
+            if (handled) return;
+        }
+
+        // 4. Advance to next slide
+        if (currentSlide < totalSlides - 1) {
+            goToSlide(currentSlide + 1, 'next');
+        }
+    }
+
+    function prevSlide() {
+        const activeSlide = slides[currentSlide];
+
+        // 1. If video is currently playing, intercept Back to pause it only (do not change slide)
+        const slideVideo = activeSlide ? activeSlide.querySelector('video') : null;
+        if (slideVideo && !slideVideo.paused && !slideVideo.ended) {
+            slideVideo.pause();
+            return;
+        }
+
+        // 1a. Closing slide stepped reveal (Slide 20: Questions -> Merci)
+        if (activeSlide && activeSlide.id === 'slide-20') {
+            const handled = closingPrev();
+            if (handled) return;
+        }
+
+        // 1b. Sommaire stepped reveal (Slide 02: 01-03 then 04-06 on Next)
+        if (activeSlide && activeSlide.id === 'slide-02') {
+            const handled = sommairePrev();
+            if (handled) return;
+        }
+
+        // 2. Plates stepped reveal
+        if (activeSlide && activeSlide.id === 'slide-06') {
+            const handled = platesPrev();
+            if (handled) return;
+        }
+
+        // 3. Timeline stepped reveal
+        if (activeSlide && (activeSlide.id === 'slide-04' || activeSlide.dataset.hasSubsteps === 'true')) {
+            const handled = timelinePrev();
+            if (handled) return;
+        }
+
+        // 4. Return to previous slide
+        if (currentSlide > 0) {
+            goToSlide(currentSlide - 1, 'prev');
+        }
+    }
+
+    // Bindings
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+            e.preventDefault();
+            nextSlide();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            prevSlide();
+        } else if (e.key === 'F11') {
+            e.preventDefault();
+            if (window.electronAPI) {
+                window.electronAPI.toggleFullScreen();
+            }
+        }
     });
-  });
 
-  // Initial resize and start loop
-  setTimeout(() => {
-    scenes3D.forEach(s => {
-      if (s && s.resize) s.resize();
+    let touchStartX = 0;
+    let touchEndX = 0;
+    document.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 50) nextSlide();
+        if (touchEndX > touchStartX + 50) prevSlide();
+    }, { passive: true });
+
+    // === CINEMATIC VIDEO SYSTEM ===
+    const videoContainers = document.querySelectorAll('.video-container');
+    const backdrop = document.getElementById('videoBackdrop');
+    const closeBtn = document.getElementById('videoCloseBtn');
+    let activeClone = null;
+    let originalVideoNode = null;
+
+    videoContainers.forEach(container => {
+        container.addEventListener('click', () => {
+            if (activeClone) return;
+
+            // 1. Get exact position of the clicked container
+            const rect = container.getBoundingClientRect();
+            originalVideoNode = container;
+
+            // hide original so it feels like it detached
+            container.style.opacity = '0';
+
+            // 2. Create the clone wrapper
+            activeClone = document.createElement('div');
+            activeClone.className = 'video-clone';
+
+            // Clone the video tag specifically (excluding the play overlay)
+            const vid = container.querySelector('video').cloneNode(true);
+            vid.controls = true; // allow user controls in fullscreen
+            // autoplay it if we want, or just wait for controls
+            vid.play().catch(e => console.log('Autoplay prevented', e));
+            activeClone.appendChild(vid);
+
+            // 3. Set clone to original rect (FIRST)
+            activeClone.style.top = `${rect.top}px`;
+            activeClone.style.left = `${rect.left}px`;
+            activeClone.style.width = `${rect.width}px`;
+            activeClone.style.height = `${rect.height}px`;
+
+            document.body.appendChild(activeClone);
+
+            // 4. Force reflow to register the starting position
+            void activeClone.offsetWidth;
+
+            // 5. Expand to FULLSCREEN (LAST/PLAY)
+            activeClone.style.top = '0px';
+            activeClone.style.left = '0px';
+            activeClone.style.width = '100vw';
+            activeClone.style.height = '100vh';
+
+            // 6. Show global backdrop & close button
+            backdrop.classList.add('active');
+            closeBtn.classList.add('active');
+        });
     });
-  }, 100);
 
-  renderLoop();
+    closeBtn.addEventListener('click', closeVideo);
+    backdrop.addEventListener('click', closeVideo);
+
+    function closeVideo() {
+        if (!activeClone || !originalVideoNode) return;
+
+        // 1. Get the original container's current rect in case window resized
+        const rect = originalVideoNode.getBoundingClientRect();
+
+        // 2. Animate clone back to original position
+        activeClone.style.top = `${rect.top}px`;
+        activeClone.style.left = `${rect.left}px`;
+        activeClone.style.width = `${rect.width}px`;
+        activeClone.style.height = `${rect.height}px`;
+
+        // Hide globals
+        backdrop.classList.remove('active');
+        closeBtn.classList.remove('active');
+
+        // Stop the video
+        const vid = activeClone.querySelector('video');
+        if (vid) vid.pause();
+
+        // 3. Wait for transition, then cleanup
+        setTimeout(() => {
+            if (activeClone && activeClone.parentNode) {
+                activeClone.parentNode.removeChild(activeClone);
+            }
+            activeClone = null;
+            originalVideoNode.style.opacity = ''; // restore original
+            originalVideoNode = null;
+        }, transitionDuration); // matches 1400ms --t-long
+    }
+
+    // === IDLE MOUSE NAVIGATION SYSTEM ===
+    let mouseIdleTimeout;
+    const navContainer = document.querySelector('.presentation-nav');
+
+    function wakeUpNav() {
+        if (!navContainer) return;
+        navContainer.classList.add('nav-visible');
+
+        clearTimeout(mouseIdleTimeout);
+        mouseIdleTimeout = setTimeout(() => {
+            navContainer.classList.remove('nav-visible');
+        }, 2500); // 2.5 seconds of inactivity hides the UI
+    }
+
+    document.addEventListener('mousemove', wakeUpNav);
+    document.addEventListener('touchstart', wakeUpNav, { passive: true });
+
+    // Wake up on first load
+    wakeUpNav();
+
+    // === ELECTRON WINDOW CONTROL EVENTS ===
+    const minBtn = document.getElementById('electron-min');
+    const maxBtn = document.getElementById('electron-max');
+    const closeBtnWin = document.getElementById('electron-close');
+
+    if (window.electronAPI) {
+        if (minBtn) minBtn.addEventListener('click', () => window.electronAPI.minimize());
+        if (maxBtn) maxBtn.addEventListener('click', () => window.electronAPI.maximize());
+        if (closeBtnWin) closeBtnWin.addEventListener('click', () => window.electronAPI.close());
+    } else {
+        const controls = document.querySelector('.electron-window-controls');
+        if (controls) controls.style.display = 'none';
+    }
 });
+
+
+// === SLIDE 14 : LENS PROJECTION LINES (tangents from origin marker to zoom circle) ===
+(function updateLensLines() {
+    const svg = document.getElementById('lens-lines');
+    const origin = document.getElementById('lens-origin');
+    const bubble = document.getElementById('lens-bubble');
+    const a = document.getElementById('lens-line-a');
+    const b = document.getElementById('lens-line-b');
+    if (svg && origin && bubble && a && b) {
+        const box = svg.getBoundingClientRect();
+        if (box.width > 0) {
+            const scale = svg.clientWidth / box.width || 1;
+            const o = origin.getBoundingClientRect();
+            const c = bubble.getBoundingClientRect();
+            const px = (o.left + o.width / 2 - box.left) * scale;
+            const py = (o.top + o.height / 2 - box.top) * scale;
+            const cx = (c.left + c.width / 2 - box.left) * scale;
+            const cy = (c.top + c.height / 2 - box.top) * scale;
+            const r = (c.width / 2) * scale;
+            const dx = px - cx, dy = py - cy;
+            const d = Math.hypot(dx, dy);
+            if (d > r) {
+                const phi = Math.atan2(dy, dx);
+                const beta = Math.acos(r / d);
+                [[a, phi + beta], [b, phi - beta]].forEach(([line, ang]) => {
+                    line.setAttribute('x1', px);
+                    line.setAttribute('y1', py);
+                    line.setAttribute('x2', cx + r * Math.cos(ang));
+                    line.setAttribute('y2', cy + r * Math.sin(ang));
+                });
+            }
+        }
+    }
+    requestAnimationFrame(updateLensLines);
+})();
+
+
